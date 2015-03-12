@@ -1,0 +1,1 @@
+INSERT INTO `barcos`.`usuarios` (`nick`, `password`, `id`, `p_ganadas`, `p_perdidas`, `estado`, `peticion`) VALUES ('asd', 'asd', NULL, '', '', '', '');
