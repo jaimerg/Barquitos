@@ -1,6 +1,7 @@
 <?php session_start(); ?>
 <html>
     <head>
+        <!-- asd --> 
         <meta charset="UTF-8">
         <link href="css/styles.css" rel="stylesheet" type="text/css" />
         <script type="text/javascript" src="script.js"></script>
@@ -50,3 +51,5 @@
         </div>
     </body>
 </html>
+
+<!-- asd --> 
