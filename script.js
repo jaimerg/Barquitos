@@ -140,10 +140,13 @@ function inici() {
 //Funcion para refrescar la lista de usuarios
     refrescar();
 }
+
+//tiempo del que se autorefrescará la lista
 function refrescar() {
         window.setInterval(
                 function () {
-                    lista();
+                    //lista();
+                    consultaUsuarios();
                 }
         , 3000);
 
@@ -152,16 +155,38 @@ function refrescar() {
 // consulta 
 function lista() {
    //crear consulta ajax a php que retorne una estructura json con los usuarios conectados
-    //indicar la funcion encargada de recibir la respuesta
+   //indicar la funcion encargada de recibir la respuesta
+   
+   
 }
 
 
 
-/*
- while($registro=mysql_fetch_array($consulta)){
- if($registro['estado'] == 1){
- 
- }
- } 
- 
- */
+//envia consulta para obtener la lista de usuarios conectados
+function consultaUsuarios(){
+    //var numerotarjeta = document.getElementById("inputmodificar").value;
+    
+    var urlDestino = "llistatUsuaris.php";
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("POST", urlDestino, true);
+    xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xmlHttp.onreadystatechange = function () {
+        if (xmlHttp.readyState == 4) {
+            listaUsuarios(xmlHttp);
+        }
+    };
+    xmlHttp.send();
+}
+
+function listaUsuarios(xmlHttp){
+    if (xmlHttp.status == 200) {
+        var resp = xmlHttp.responseText;
+        var respJSON = JSON.parse(resp);
+        
+        //var nombre = respJSON.nnombre;
+        var num_usuarios = respJSON.id;
+        
+        // codigo js para mostrar los nombre
+        document.getElementById("usus").innerHTML = num_usuarios;
+    }
+}

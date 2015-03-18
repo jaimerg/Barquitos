@@ -45,6 +45,7 @@
             </div>
             <center>
                 <img src="imagenes/barco.png" id="barcop"/>
+                <div id="usus" style="background-color: chartreuse;"></div>
             </center>
             
         </div>
