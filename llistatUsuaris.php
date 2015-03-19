@@ -15,11 +15,11 @@ while ($registro = mysqli_fetch_array($consulta)) {
         //echo ("<div class='fila_registro'>" . $registro['nick'] . '</div>');
         //array_push($array, $registro['nick']);
         $nick = $registro['nick'];
-        $respuesta = $respuesta + '"nombre'+$i'":"'.$nick.'"';
+        $respuesta = $respuesta + '"nombre'+$i+'":"'.$nick.'",';
         $i++;
     }
 }
-$respuesta = $respuesta + ', "i":"''"}';
-echo $array;
+$respuesta = $respuesta + ' "i":"'.$i.'"}';
+echo $respuesta;
 
 ?>
