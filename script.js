@@ -33,7 +33,7 @@ function barcos() {
     barco = barco + "<table border='1'>";
     barco = barco + "<tr>";
     barco = barco + "<td><div  > <img id='barco1' long='1' ori='h' draggable='true' ondragstart='drag(event)' src='imagenes/barco1.png' width='50px' height='50px'> </div></td>";
-    barco = barco + "<td><div > <img id='barco2' long='2' ori='h' draggable='true' ondragstart='drag(event)' onclick='orientacion(this);' src='imagenes/barcobarcoh.png' id='ass' width='100px' height='50px'> </div></td>";
+    barco = barco + "<td><div id='divBarco2'> <img id='barco2' long='2' ori='h' draggable='true' ondragstart='drag(event)' onclick='orientacion(this);' src='imagenes/barcobarcoh.png'  width='100px' height='50px'> </div></td>";
     barco = barco + "<td><div id='papelera'><img src='imagenes/papelera.png' width='100px' heigth='50px'></td>";
     barco = barco + '<td><div id="papelera" ondrop="return eliminar(event)" ondragleave="return leave(event)" ondragover="return over(event)" ondragenter="return enter(event)">Papelera</div>';
     barco = barco + "</tr>";
@@ -42,17 +42,26 @@ function barcos() {
 }
 
 //cambiar orientacion de la imagen
-function orientacion(asd){
+function orientacion(ev){
     
-    //var asd= document.getElementById('qwe1');
-    var v = "<img src='imagenes/barcobarcov.png' width='50px' height='100px'>";
-    var h = "<img src='imagenes/barcobarcoh.png' width='100px' height='50px'>";
+    var asd= document.getElementById('barco2');
+   // var v = "<img src='imagenes/barcobarcov.png' width='50px' height='100px' ori='v'  long='2'  draggable='true' ondragstart='drag(event)' onclick='orientacion(this);' >";
+    //var h = "<img src='imagenes/barcobarcoh.png' width='100px' height='50px' ori='h'  long='2'  draggable='true' ondragstart='drag(event)' onclick='orientacion(this);' >";
     if(asd.getAttribute('ori')==='h'){
-        document.getElementById('qwe1').innerHTML = v;
+        //document.getElementById('divBarco2').innerHTML = v;
         asd.setAttribute('ori','v');
-    }else{
-        document.getElementById('qwe1').innerHTML = h;
-        asd.setAttribute('ori','h');
+        asd.src='imagenes/barcobarcov.png';
+        asd.style.width='50px';
+        asd.style.height='100px';
+    }
+    else{ 
+        if(asd.getAttribute('ori')==='v'){
+            //document.getElementById('divBarco2').innerHTML = h;
+            asd.setAttribute('ori','h'); 
+            asd.src='imagenes/barcobarcoh.png';
+            asd.style.width='100px';
+            asd.style.height='50px';
+        }
     }
  }
 
@@ -148,7 +157,7 @@ function refrescar() {
                     //lista();
                     consultaUsuarios();
                 }
-        , 3000);
+        , 10000);
 
     }
 
