@@ -15,6 +15,7 @@
                 <?php
                     require_once './llistatUsuaris.php';
                 ?>
+                <div id="listalista">hola</div>
             </div>
             <div>
                 <div id="form">

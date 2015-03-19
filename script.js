@@ -3,14 +3,14 @@ var divs = '';
 var barco = '';
 
 
-
+/*
 //funcion que te da la letra siguiente
 function nextChar(c) {
     return String.fromCharCode(c.charCodeAt(0) + 1);
 }
 // var a = 'a';
 // a = nextChar(a);
-
+*/
 
 function tablero() {
     for (var i = 0; i < 10; i++) {
@@ -30,7 +30,10 @@ function checkPositionBarcu(elem){
 }
 //ondrop='drop(event)' ondragover='allowDrop(event)'
 function barcos() {
-    barco = barco + "<table border='1'>";
+    barco = barco + "<br><br><br><br>";
+    barco = barco + "<fieldset>";
+    barco = barco + "<legend><span> Barquitos para colocar <span></legend>";
+    barco = barco + "<table border='0'>";
     barco = barco + "<tr>";
     barco = barco + "<td><div  > <img id='barco1' long='1' ori='h' draggable='true' ondragstart='drag(event)' src='imagenes/barco1.png' width='50px' height='50px'> </div></td>";
     barco = barco + "<td><div id='divBarco2'> <img id='barco2' long='2' ori='h' draggable='true' ondragstart='drag(event)' onclick='orientacion(this);' src='imagenes/barcobarcoh.png'  width='100px' height='50px'> </div></td>";
@@ -38,6 +41,7 @@ function barcos() {
     barco = barco + '<td><div id="papelera" ondrop="return eliminar(event)" ondragleave="return leave(event)" ondragover="return over(event)" ondragenter="return enter(event)">Papelera</div>';
     barco = barco + "</tr>";
     barco = barco + "</table>";
+    barco = barco + "</fieldset>";
     document.getElementById("barcos").innerHTML = barco;
 }
 
@@ -117,7 +121,7 @@ function drop(ev) {
                 
                 var id2 = "t"+fila+"t"+(columna+1); 
                 var objetivo2 = document.getElementById(id2);
-                var ocupado2 = objetivo2.getAttribute('ocupado')
+                var ocupado2 = objetivo2.getAttribute('ocupado');
                 if(ocupado2 == "no"){
                     objetivo.style.backgroundImage = "url(imagenes/b1.png)";
                     objetivo2.style.backgroundImage = "url(imagenes/b2.png)";
@@ -127,7 +131,15 @@ function drop(ev) {
                 
             }
             if(barco.getAttribute('ori')=="v"){
-                
+                var id2 = "t"+(fila+1)+"t"+columna; 
+                var objetivo2 = document.getElementById(id2);
+                var ocupado2 = objetivo2.getAttribute('ocupado');
+                if(ocupado2 == "no"){
+                    objetivo.style.backgroundImage = "url(imagenes/b3.png)";
+                    objetivo2.style.backgroundImage = "url(imagenes/b4.png)";
+                    objetivo.setAttribute('ocupado',"si");
+                    objetivo2.setAttribute('ocupado',"si");
+                }
             }
            
         }
@@ -155,7 +167,7 @@ function refrescar() {
         window.setInterval(
                 function () {
                     //lista();
-                    consultaUsuarios();
+                    //consultaUsuarios();
                 }
         , 10000);
 
@@ -192,10 +204,17 @@ function listaUsuarios(xmlHttp){
         var resp = xmlHttp.responseText;
         var respJSON = JSON.parse(resp);
         
-        //var nombre = respJSON.nnombre;
-        var num_usuarios = respJSON.id;
+        var num_usuarios = respJSON.i;
+        var text = "";
+        var array = [];
+        
+        for(var i=0; i=num_usuarios; i++){
+            var troll = "nombre"+i;
+            var nombre = respJSON.nombre1;
+            array.push(nombre);
+        }
         
         // codigo js para mostrar los nombre
-        document.getElementById("usus").innerHTML = num_usuarios;
+        document.getElementById("listalista").innerHTML = num_usuarios;
     }
 }
