@@ -37,6 +37,7 @@ function barcos() {
     barco = barco + "<tr>";
     barco = barco + "<td><div  > <img id='barco1' long='1' ori='h' draggable='true' ondragstart='drag(event)' src='imagenes/barco1.png' width='50px' height='50px'> </div></td>";
     barco = barco + "<td><div id='divBarco2'> <img id='barco2' long='2' ori='h' draggable='true' ondragstart='drag(event)' onclick='orientacion(this);' src='imagenes/barcobarcoh.png'  width='100px' height='50px'> </div></td>";
+    barco = barco + "<td><div id='divBarco3'> <img id='barco3' long='3' ori='h' draggable='true' ondragstart='drag(event)' onclick='orientacion2(this);' src='imagenes/bbh.png'  width='150px' height='50px'> </div></td>";
     barco = barco + "<td><div id='papelera'><img src='imagenes/papelera.png' width='100px' heigth='50px'></td>";
     barco = barco + '<td><div id="papelera" ondrop="return eliminar(event)" ondragleave="return leave(event)" ondragover="return over(event)" ondragenter="return enter(event)">Papelera</div>';
     barco = barco + "</tr>";
@@ -47,7 +48,7 @@ function barcos() {
 
 //cambiar orientacion de la imagen
 function orientacion(ev){
-    
+    // cambio de orientación para barcos de 2 posiciones
     var asd= document.getElementById('barco2');
    // var v = "<img src='imagenes/barcobarcov.png' width='50px' height='100px' ori='v'  long='2'  draggable='true' ondragstart='drag(event)' onclick='orientacion(this);' >";
     //var h = "<img src='imagenes/barcobarcoh.png' width='100px' height='50px' ori='h'  long='2'  draggable='true' ondragstart='drag(event)' onclick='orientacion(this);' >";
@@ -65,6 +66,24 @@ function orientacion(ev){
             asd.src='imagenes/barcobarcoh.png';
             asd.style.width='100px';
             asd.style.height='50px';
+        }
+    }
+}
+function orientacion2(ev){
+ // cambio de orientacion para barcos de 3 posiciones
+    var barco3 = document.getElementById('barco3');
+    if(barco3.getAttribute('ori')==='h'){
+        barco3.setAttribute('ori','v');
+        barco3.src='imagenes/bbv.png';
+        barco3.style.width='50px';
+        barco3.style.height='150px';
+    }
+    else{ 
+        if(barco3.getAttribute('ori')==='v'){
+            barco3.setAttribute('ori','h'); 
+            barco3.src='imagenes/bbh.png';
+            barco3.style.width='150px';
+            barco3.style.height='50px';
         }
     }
  }
@@ -140,10 +159,46 @@ function drop(ev) {
                     objetivo.setAttribute('ocupado',"si");
                     objetivo2.setAttribute('ocupado',"si");
                 }
+            }  
+        }
+        
+        else if(barco.getAttribute('long')==3){
+            if(barco.getAttribute('ori')=="h"){
+                
+                var id2 = "t"+fila+"t"+(columna+1);
+                var id3 = "t"+fila+"t"+(columna+2); 
+                var objetivo2 = document.getElementById(id2);
+                var objetivo3 = document.getElementById(id3);
+                var ocupado2 = objetivo2.getAttribute('ocupado');
+                var ocupado3 = objetivo3.getAttribute('ocupado');
+                if(ocupado2 == "no"){
+                    objetivo.style.backgroundImage = "url(imagenes/bb1.png)";
+                    objetivo2.style.backgroundImage = "url(imagenes/bb2.png)";
+                    objetivo3.style.backgroundImage = "url(imagenes/bb3.png)";
+                    objetivo.setAttribute('ocupado',"si");
+                    objetivo2.setAttribute('ocupado',"si");
+                    objetivo3.setAttribute('ocupado',"si");
+                }
+                
+            }
+            if(barco.getAttribute('ori')=="v"){
+                var id2 = "t"+(fila+1)+"t"+columna;
+                var id3 = "t"+(fila+2)+"t"+columna;
+                var objetivo2 = document.getElementById(id2);
+                var objetivo3 = document.getElementById(id3);
+                var ocupado2 = objetivo2.getAttribute('ocupado');
+                var ocupado3 = objetivo3.getAttribute('ocupado');
+                if(ocupado2 == "no"){
+                    objetivo.style.backgroundImage = "url(imagenes/bb4.png)";
+                    objetivo2.style.backgroundImage = "url(imagenes/bb5.png)";
+                    objetivo3.style.backgroundImage = "url(imagenes/bb6.png)";
+                    objetivo.setAttribute('ocupado',"si");
+                    objetivo2.setAttribute('ocupado',"si");
+                    objetivo3.setAttribute('ocupado',"si");
+                }
             }
            
         }
-        
         
         
     }
@@ -167,7 +222,7 @@ function refrescar() {
         window.setInterval(
                 function () {
                     //lista();
-                    //consultaUsuarios();
+                    consultaUsuarios();
                 }
         , 10000);
 
@@ -207,14 +262,15 @@ function listaUsuarios(xmlHttp){
         var num_usuarios = respJSON.i;
         var text = "";
         var array = [];
-        
-        for(var i=0; i=num_usuarios; i++){
+         document.getElementById("listalista").innerHTML ="";
+        for(var i=1; i<=num_usuarios; i++){
             var troll = "nombre"+i;
-            var nombre = respJSON.nombre1;
-            array.push(nombre);
+            var nombre = respJSON["nombre"+i];
+            document.getElementById("listalista").innerHTML += nombre+"<br />";
+            //array.push(nombre);
         }
         
         // codigo js para mostrar los nombre
-        document.getElementById("listalista").innerHTML = num_usuarios;
+        //document.getElementById("listalista").innerHTML = nombre;
     }
 }
