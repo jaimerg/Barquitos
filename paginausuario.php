@@ -11,6 +11,8 @@
         $estado = 1;
         $sql = mysql_query("update usuarios set estado='".$estado."' where nick='".$user."' and password='".$pass."'");
         
+      //  echo '<script>var nomUsuari ='.$_SESSION['user'].'</script>';
+        
 ?>
 <html>
     <head>
