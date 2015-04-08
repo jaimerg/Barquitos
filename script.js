@@ -29,6 +29,7 @@ function checkPositionBarcu(elem){
     elem.id;
 }
 //ondrop='drop(event)' ondragover='allowDrop(event)'
+
 function barcos() {
     barco = barco + "<br><br><br><br>";
     barco = barco + "<fieldset>";
@@ -171,7 +172,7 @@ function drop(ev) {
                 var objetivo3 = document.getElementById(id3);
                 var ocupado2 = objetivo2.getAttribute('ocupado');
                 var ocupado3 = objetivo3.getAttribute('ocupado');
-                if(ocupado2 == "no"){
+                if(ocupado2 == "no" && ocupado3 == "no"){
                     objetivo.style.backgroundImage = "url(imagenes/bb1.png)";
                     objetivo2.style.backgroundImage = "url(imagenes/bb2.png)";
                     objetivo3.style.backgroundImage = "url(imagenes/bb3.png)";
@@ -188,7 +189,7 @@ function drop(ev) {
                 var objetivo3 = document.getElementById(id3);
                 var ocupado2 = objetivo2.getAttribute('ocupado');
                 var ocupado3 = objetivo3.getAttribute('ocupado');
-                if(ocupado2 == "no"){
+                if(ocupado2 == "no" && ocupado3 == "no"){
                     objetivo.style.backgroundImage = "url(imagenes/bb4.png)";
                     objetivo2.style.backgroundImage = "url(imagenes/bb5.png)";
                     objetivo3.style.backgroundImage = "url(imagenes/bb6.png)";
@@ -254,6 +255,8 @@ function consultaUsuarios(){
     xmlHttp.send();
 }
 
+var array = [];
+
 function listaUsuarios(xmlHttp){
     if (xmlHttp.status == 200) {
         var resp = xmlHttp.responseText;
@@ -261,16 +264,50 @@ function listaUsuarios(xmlHttp){
         
         var num_usuarios = respJSON.i;
         var text = "";
-        var array = [];
-         document.getElementById("listalista").innerHTML ="";
+        
+        document.getElementById("listalista").innerHTML ="";
         for(var i=1; i<=num_usuarios; i++){
-            var troll = "nombre"+i;
+            //var troll = "nombre"+i;
             var nombre = respJSON["nombre"+i];
             document.getElementById("listalista").innerHTML += nombre+"<br />";
-            //array.push(nombre);
+            array.push(nombre);
         }
         
         // codigo js para mostrar los nombre
         //document.getElementById("listalista").innerHTML = nombre;
+    }
+    
+}
+
+//pidejugar enviara un ajax que pregunte contra quien quiere jugar 
+
+function pidejugar(){
+    // consulta para 
+    var jugador = window.prompt("Escribe el nombre del jugador al que quieres retar");
+    
+    var urlDestino = "pidejugar.php";
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("POST", urlDestino, true);
+    xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xmlHttp.onreadystatechange = function () {
+        if (xmlHttp.readyState == 4) {
+            resppidejuagar(xmlHttp);
+        }
+    };
+    xmlHttp.send("nombre="+jugador);
+}
+
+function resppidejuagar(xmlHttp){
+    if (xmlHttp.status == 200) {
+        var resp = xmlHttp.responseText;
+        var respJSON = JSON.parse(resp);
+        
+        var ok = respJSON.disponible;
+        if(ok == false){
+            alert("Este jugador no existe, prueba con otro");
+        }
+        else if(ok == true){
+            alert("Empieza el juego en 3, 2, 1...");
+        }
     }
 }

@@ -28,7 +28,9 @@
             <div id="lista2">
                 <h3 class="titulos">Lista de usuarios conectados</h3>
                 <span><a href="principal.php">página de juego</a></span>
+                <button onclick="pidejugar()">Retar Juagdor</button>
             </div>
+            
             <div id="espaciousu">
                 <h3 class="titulos">Hola, <?php echo $_SESSION['user'] ?></h3>
             </div>

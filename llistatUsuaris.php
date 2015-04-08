@@ -1,8 +1,8 @@
 <?php
 $host="localhost";
-        $user="root";
-        $password="";
-        $database="barcos";
+$user="root";
+$password="";
+$database="barcos";
 $conexion = mysqli_connect($host, $user, $password, $database);
 
 $consulta = mysqli_query($conexion,"select * from usuarios");
