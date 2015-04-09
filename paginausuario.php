@@ -29,6 +29,7 @@
                 <h3 class="titulos">Lista de usuarios conectados</h3>
                 <span><a href="principal.php">página de juego</a></span>
                 <button onclick="pidejugar()">Retar Juagdor</button>
+                <div id="listalista2"></div>
             </div>
             
             <div id="espaciousu">

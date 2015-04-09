@@ -19,8 +19,8 @@ $nick = $_POST['nombre'];
 $respuesta = '{'; 
 $ok = false; 
 while ($registro = mysqli_fetch_array($consulta)) {
-    if($registro['nick'] = $nick && $registro['estado'] == 1){
-        $ok = true;
+    if($registro['nick'] == $nick && $registro['estado'] == 1){
+        $ok = "true";
         $respuesta = $respuesta . '"disponible":"'.$ok.'"';
     }
 }

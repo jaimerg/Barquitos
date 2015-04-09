@@ -270,6 +270,7 @@ function listaUsuarios(xmlHttp){
             //var troll = "nombre"+i;
             var nombre = respJSON["nombre"+i];
             document.getElementById("listalista").innerHTML += nombre+"<br />";
+            //document.getElementById("listalista2").innerHTML += nombre+"<br />";
             array.push(nombre);
         }
         
