@@ -19,6 +19,9 @@
         <meta charset="UTF-8">
         <link href="css/styles.css" rel="stylesheet" type="text/css" />
         <script type="text/javascript" src="script.js"></script>
+        <script>
+        
+        var myId="<?php echo $_SESSION['id']; ?>";</script>
         <title>Barquitos</title>
     </head>
     <body onload="inicio2()">

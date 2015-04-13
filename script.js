@@ -164,6 +164,7 @@ function drop(ev) {
         }
         
         else if(barco.getAttribute('long')==3){
+            
             if(barco.getAttribute('ori')=="h"){
                 
                 var id2 = "t"+fila+"t"+(columna+1);
@@ -317,9 +318,15 @@ function listaUsuarios2(xmlHttp){
         
         document.getElementById("listalista2").innerHTML ="";
         for(var i=1; i<=num_usuarios; i++){
-            var nombre = respJSON["nombre"+i];
+            var nombre = respJSON["nombre"+i].nombre;
+            var id = respJSON["nombre"+i].id;
+            var peticion = respJSON["nombre"+i].peticion;
             document.getElementById("listalista2").innerHTML += nombre+"<br />";
             array.push(nombre);
+            
+            if(myId == peticion){
+                window.location="principal.php";
+            }
         }
     }
 }
@@ -367,7 +374,7 @@ function peticion(){
     xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xmlHttp.onreadystatechange = function () {
         if (xmlHttp.readyState == 4) {
-            listaUsuarios2(xmlHttp);
+            respuestapeticion(xmlHttp);
         }
     };
     xmlHttp.send();

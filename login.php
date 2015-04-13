@@ -7,7 +7,7 @@
 </html>
 
 <?php
-    
+    $_SESSION['id'];
     $_SESSION['user'] = $_POST['nick'];
     $nick = $_POST['nick'];
     $_SESSION['pass'] = $_POST['password'];
@@ -21,6 +21,7 @@
         
     while($registro=mysql_fetch_array($consulta)){
         if($registro['nick'] == $nick && $registro['password'] == $pass){
+            $_SESSION['id'] = $registro['id'];
             header("Location:paginausuario.php");
             $usu = true;
         }
