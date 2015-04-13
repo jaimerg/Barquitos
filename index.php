@@ -12,9 +12,7 @@
             <h1 class="titulos"> Bienvenido al mejor juego de barcos de la historia de barcos </h1>
             <div id="lista">
                 <h3 class="titulos">Lista de usuarios conectados</h3>
-                <?php
-                    require_once './llistatUsuaris.php';
-                ?>
+                <?php //require_once './llistatUsuaris.php'; ?>
                 <div id="listalista">hola</div>
             </div>
             <div>
@@ -40,15 +38,13 @@
                         <br />
                         <input type=submit value="Crear usuario">&nbsp;<input type=reset value="Restablecer">
                     </div>
-                    </form>
-                    
+                    </form> 
                 </div>
             </div>
             <center>
                 <img src="imagenes/barco.png" id="barcop"/>
                 <div id="usus" style="background-color: chartreuse;"></div>
             </center>
-            
         </div>
     </body>
 </html>

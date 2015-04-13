@@ -11,7 +11,7 @@
         $estado = 1;
         $sql = mysql_query("update usuarios set estado='".$estado."' where nick='".$user."' and password='".$pass."'");
         
-      //  echo '<script>var nomUsuari ='.$_SESSION['user'].'</script>';
+        //  echo '<script>var nomUsuari ='.$_SESSION['user'].'</script>';
         
 ?>
 <html>
@@ -21,15 +21,16 @@
         <script type="text/javascript" src="script.js"></script>
         <title>Barquitos</title>
     </head>
-    <body>
+    <body onload="inicio2()">
         <div id="contenedorpu">
             <br/>
             <h1 class="titulos"> Bienvenido al mejor juego de barcos de la historia de barcos </h1>
             <div id="lista2">
                 <h3 class="titulos">Lista de usuarios conectados</h3>
+                <div id="listalista2"></div>
                 <span><a href="principal.php">página de juego</a></span>
                 <button onclick="pidejugar()">Retar Juagdor</button>
-                <div id="listalista2"></div>
+                
             </div>
             
             <div id="espaciousu">

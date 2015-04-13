@@ -217,17 +217,33 @@ function inici() {
 //Funcion para refrescar la lista de usuarios
     refrescar();
 }
+function inicio2(){
+//Funcion para refrescar la lista de usuarios
+    refrescar2();
+}
 
 //tiempo del que se autorefrescará la lista
 function refrescar() {
+        consultaUsuarios();
+        
         window.setInterval(
                 function () {
                     //lista();
                     consultaUsuarios();
+                    
                 }
         , 10000);
+}
 
-    }
+function refrescar2() {
+        consultaUsuarios2();
+        window.setInterval(
+                function () {
+                    
+                    consultaUsuarios2();
+                }
+        , 10000);
+}
 
 // consulta 
 function lista() {
@@ -239,10 +255,8 @@ function lista() {
 
 
 
-//envia consulta para obtener la lista de usuarios conectados
+//envia consulta para obtener la lista de usuarios conectados (( Lista 1 ))
 function consultaUsuarios(){
-    //var numerotarjeta = document.getElementById("inputmodificar").value;
-    
     var urlDestino = "llistatUsuaris.php";
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open("POST", urlDestino, true);
@@ -280,6 +294,36 @@ function listaUsuarios(xmlHttp){
     
 }
 
+function consultaUsuarios2(){
+    var urlDestino = "llistatUsuaris2.php";
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("POST", urlDestino, true);
+    xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xmlHttp.onreadystatechange = function () {
+        if (xmlHttp.readyState == 4) {
+            listaUsuarios2(xmlHttp);
+        }
+    };
+    xmlHttp.send();
+}
+
+function listaUsuarios2(xmlHttp){
+    if (xmlHttp.status == 200) {
+        var resp = xmlHttp.responseText;
+        var respJSON = JSON.parse(resp);
+        
+        var num_usuarios = respJSON.i;
+        var text = "";
+        
+        document.getElementById("listalista2").innerHTML ="";
+        for(var i=1; i<=num_usuarios; i++){
+            var nombre = respJSON["nombre"+i];
+            document.getElementById("listalista2").innerHTML += nombre+"<br />";
+            array.push(nombre);
+        }
+    }
+}
+
 //pidejugar enviara un ajax que pregunte contra quien quiere jugar 
 
 function pidejugar(){
@@ -311,4 +355,34 @@ function resppidejuagar(xmlHttp){
             alert("Empieza el juego en 3, 2, 1...");
         }
     }
+}
+
+
+// consulta para empezar partidas si se tiene un id en el campo peticion
+
+function peticion(){
+    var urlDestino = "peticion.php";
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("POST", urlDestino, true);
+    xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xmlHttp.onreadystatechange = function () {
+        if (xmlHttp.readyState == 4) {
+            listaUsuarios2(xmlHttp);
+        }
+    };
+    xmlHttp.send();
+}
+
+function respuestapeticion(xmlHttp){
+    if (xmlHttp.status == 200) {
+        var resp = xmlHttp.responseText;
+        var respJSON = JSON.parse(resp);
+        
+        var ok = respJSON.peticion;
+        
+        if(ok == "ok"){
+            //location.href='www.paginaredireccionada.com';
+            window.location="http://localhost/Barquitos/principal.php";
+        }
+    }  
 }
