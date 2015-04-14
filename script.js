@@ -36,9 +36,9 @@ function barcos() {
     barco = barco + "<legend><span> Barquitos para colocar <span></legend>";
     barco = barco + "<table border='0'>";
     barco = barco + "<tr>";
-    barco = barco + "<td><div  > <img id='barco1' long='1' ori='h' draggable='true' ondragstart='drag(event)' src='imagenes/barco1.png' width='50px' height='50px'> </div></td>";
-    barco = barco + "<td><div id='divBarco2'> <img id='barco2' long='2' ori='h' draggable='true' ondragstart='drag(event)' onclick='orientacion(this);' src='imagenes/barcobarcoh.png'  width='100px' height='50px'> </div></td>";
-    barco = barco + "<td><div id='divBarco3'> <img id='barco3' long='3' ori='h' draggable='true' ondragstart='drag(event)' onclick='orientacion2(this);' src='imagenes/bbh.png'  width='150px' height='50px'> </div></td>";
+    barco = barco + "<td><div id='divBarco1'> <img id='barco1' long='1' ori='h' bdisp='4' draggable='true' ondragstart='drag(event)' src='imagenes/barco1.png' width='50px' height='50px'> </div></td>";
+    barco = barco + "<td><div id='divBarco2'> <img id='barco2' long='2' ori='h' bdisp='3' draggable='true' ondragstart='drag(event)' onclick='orientacion(this);' src='imagenes/barcobarcoh.png'  width='100px' height='50px'> </div></td>";
+    barco = barco + "<td><div id='divBarco3'> <img id='barco3' long='3' ori='h' bdisp='2' draggable='true' ondragstart='drag(event)' onclick='orientacion2(this);' src='imagenes/bbh.png'  width='150px' height='50px'> </div></td>";
     barco = barco + "<td><div id='papelera'><img src='imagenes/papelera.png' width='100px' heigth='50px'></td>";
     barco = barco + '<td><div id="papelera" ondrop="return eliminar(event)" ondragleave="return leave(event)" ondragover="return over(event)" ondragenter="return enter(event)">Papelera</div>';
     barco = barco + "</tr>";
@@ -121,8 +121,8 @@ function drop(ev) {
     var objetivo = ev.target;
     var idObjetivo = objetivo.id;
     var res = idObjetivo.split("t");
-    //ev.target.src =;
-   // ev.target.id = "barquito" + idBarcos;
+    
+    var bdisp = barco.getAttribute('ori');
    
     console.log("id: "+id+" long: "+long+" ori: "+ori+" obj:"+idObjetivo);
     console.log(res[1] +":"+ res[2]);
@@ -135,6 +135,10 @@ function drop(ev) {
         if(barco.getAttribute('long')==1){
             objetivo.style.backgroundImage = "url('"+barco.src+"')";
             objetivo.setAttribute('ocupado',"si");
+            
+            var bdisp = barco.getAttribute('bdisp');
+            bdisp--; 
+            barco.setAttribute('bdisp',bdisp);
         }
         else if(barco.getAttribute('long')==2){
             if(barco.getAttribute('ori')=="h"){
@@ -160,9 +164,12 @@ function drop(ev) {
                     objetivo.setAttribute('ocupado',"si");
                     objetivo2.setAttribute('ocupado',"si");
                 }
-            }  
+            }
+            
+            var bdisp = barco.getAttribute('bdisp');
+            bdisp--; 
+            barco.setAttribute('bdisp',bdisp);
         }
-        
         else if(barco.getAttribute('long')==3){
             
             if(barco.getAttribute('ori')=="h"){
@@ -199,9 +206,21 @@ function drop(ev) {
                     objetivo3.setAttribute('ocupado',"si");
                 }
             }
-           
+
+            var bdisp = barco.getAttribute('bdisp');
+            bdisp--; 
+            barco.setAttribute('bdisp',bdisp);
         }
-        
+      // hacer que los barcos desaparecan cuando se haya colocado un numero determinado de veces  
+      if(barco.getAttribute('bdisp')==0 && barco.getAttribute('long')==1){
+          document.getElementById("divBarco1").style.visibility = "hidden";
+      }
+      else if(barco.getAttribute('bdisp')==0 && barco.getAttribute('long')==2){
+          document.getElementById("divBarco2").style.visibility = "hidden";
+      }
+      else if(barco.getAttribute('bdisp')==0 && barco.getAttribute('long')==3){
+          document.getElementById("divBarco3").style.visibility = "hidden";
+      }
         
     }
     
