@@ -1,5 +1,6 @@
 var letra = 'a';
 var divs = '';
+var divs2 = '';
 var barco = '';
 
 
@@ -15,7 +16,7 @@ function nextChar(c) {
 function tablero() {
     for (var i = 0; i < 10; i++) {
         for (var j = 0; j < 10; j++) {
-            divs = divs + "<div onmouseover='checkPositionBarcu(this)' id='t" + i +"t"+ j + "' ocupado='no' class='divTablero' "
+            divs = divs + "<div onmouseover='checkPositionBarcu(this)' id='t" + i +"t"+ j + "'ocupado='no' class='divTablero' "
                     +"ondrop='drop(event)' ondragover='allowDrop(event)'></div>";
         }
         //letra = nextChar(letra);
@@ -23,6 +24,20 @@ function tablero() {
     }
     // Se mostrara el tablero de juego
     document.getElementById("tablero").innerHTML = divs;
+}
+
+function tablero2() {
+    //divs2 += "hola";
+    for (var i = 0; i < 10; i++) {
+        for (var j = 0; j < 10; j++) {
+            divs2 = divs2 + "<div onmouseover='checkPositionBarcu(this)' id='y" + i +"y"+ j + "'ocupado='no' class='divTablero' "
+                    +"ondrop='drop(event)' ondragover='allowDrop(event)'></div>";
+        }
+        //letra = nextChar(letra);
+        divs2 = divs2 + "<br />";
+    }
+    // Se mostrara el tablero de juego
+    document.getElementById("tablero2").innerHTML = divs2;
 }
 
 function checkPositionBarcu(elem){
@@ -340,21 +355,24 @@ function listaUsuarios2(xmlHttp){
             var nombre = respJSON["nombre"+i].nombre;
             var id = respJSON["nombre"+i].id;
             var peticion = respJSON["nombre"+i].peticion;
-            document.getElementById("listalista2").innerHTML += nombre+"<br />";
-            array.push(nombre);
+            document.getElementById("listalista2").innerHTML += "<span>"+nombre+"</span><button name='"+nombre+"' value='Retar' onclick='pidejugar(name)'>"+nombre+"</button><br />";
             
+            //array.push(nombre);
             if(myId == peticion){
                 window.location="principal.php";
             }
         }
     }
 }
-
+function reto(nombre){
+    alert(nombre);
+}
 //pidejugar enviara un ajax que pregunte contra quien quiere jugar 
 
-function pidejugar(){
+function pidejugar(name){
     // consulta para 
-    var jugador = window.prompt("Escribe el nombre del jugador al que quieres retar");
+    //var jugador = window.prompt("Escribe el nombre del jugador al que quieres retar");
+    //var jugador = name;
     
     var urlDestino = "pidejugar.php";
     var xmlHttp = new XMLHttpRequest();
@@ -365,7 +383,17 @@ function pidejugar(){
             resppidejuagar(xmlHttp);
         }
     };
-    xmlHttp.send("nombre="+jugador);
+    xmlHttp.send("nombre="+name);
+//    var urlDestino = "pidejugar.php";
+//    var xmlHttp = new XMLHttpRequest();
+//    xmlHttp.open("POST", urlDestino, true);
+//    xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+//    xmlHttp.onreadystatechange = function () {
+//        if (xmlHttp.readyState == 4) {
+//            resppidejuagar(xmlHttp);
+//        }
+//    };
+//    xmlHttp.send("nombre="+jugador);
 }
 
 function resppidejuagar(xmlHttp){

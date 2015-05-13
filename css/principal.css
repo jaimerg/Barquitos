@@ -21,6 +21,11 @@ td{
 div {
     display: inline-block;
 }
+
+#tablero, #tablero2{
+    min-width: 520px;
+}
+
 #contenedorp > div {
     vertical-align: top;
     width: 500px;

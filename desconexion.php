@@ -14,13 +14,18 @@ $consulta = mysql_query("select * from usuarios");
 // quitar los ids de los jugadores si uno se desconecta
 while ($registro = mysql_fetch_array($consulta)) {
     if($registro['nick'] == $user){
-        $sql2 = mysql_query("update usuarios set estado=0 where nick='".$user."'");
-        $sql3 = mysql_query("update usuarios set estado=0 where nick='".$resgistro['peticion']."'");        
+        $sql2 = mysql_query("update usuarios set peticion=0 where nick='".$user."'");
+        $sql3 = mysql_query("update usuarios set peticion=0 where id='".$registro['peticion']."'");        
+        print $user;
+        echo $registro['peticion'];
     }
 }
 
 
 session_unset();
+
 header("Location:index.php");
+
+ 
 
 ?>
