@@ -22,8 +22,8 @@ if (isset($_SESSION['user'])) {
                         <td><div id="tablero2"></div> <!-- Aquí se genera el tablero de los disparos --></td>
                     </tr>
                     <tr>
-                        <td> <div id="barcos"></div> <!-- Aquí se generan los barcos para arratrar --></td>
-                        <td></td>                    
+                        <td><div id="barcos"></div> <!-- Aquí se generan los barcos para arratrar --></td>
+                        <td><span>Dale listo para jugar</span><input type="checkbox" id="listo"><button id="jugar" onclick="jugar();">Jugar</button></td>                    
                     </tr>
                 </table>
                

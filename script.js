@@ -2,6 +2,7 @@ var letra = 'a';
 var divs = '';
 var divs2 = '';
 var barco = '';
+var mitablero = [];
 
 
 /*
@@ -46,7 +47,7 @@ function checkPositionBarcu(elem){
 //ondrop='drop(event)' ondragover='allowDrop(event)'
 
 function barcos() {
-    barco = barco + "<br><br><br><br>";
+    barco = barco + "<br>";
     barco = barco + "<fieldset>";
     barco = barco + "<legend><span> Barquitos para colocar <span></legend>";
     barco = barco + "<table border='0'>";
@@ -439,4 +440,54 @@ function respuestapeticion(xmlHttp){
             window.location="http://localhost/Barquitos/principal.php";
         }
     }  
+}
+
+function jugar(){
+    var empezar = document.getElementById("listo").checked;
+    //alert(empezar);
+    if(empezar == true){
+        cambioaestado3();
+        generatablero();
+        alert(mitablero);
+    }
+    
+}
+
+function cambioaestado3(){
+    var urlDestino = "listo.php";
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("POST", urlDestino, true);
+    xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xmlHttp.onreadystatechange = function () {
+        if (xmlHttp.readyState == 4) {
+            respuestapeticion(xmlHttp);
+        }
+    };
+    xmlHttp.send();
+}
+
+function respcambioestado3(){
+    if (xmlHttp.status == 200) {
+        var resp = xmlHttp.responseText;
+        var respJSON = JSON.parse(resp);
+        
+        alert("estado cambiado");
+    } 
+}
+
+function generatablero(){
+    
+    for (var i = 0; i < 10; i++) {
+        for (var j = 0; j < 10; j++) {
+            var barco = document.getElementById("t" + i +"t"+ j);
+            var ocupado = barco.getAttribute('ocupado');
+            if(ocupado == "no"){
+                mitablero.push("0");
+            }
+            else if(ocupado == "si"){
+                mitablero.push("1");
+            }
+        }
+        
+    }
 }

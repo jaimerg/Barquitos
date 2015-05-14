@@ -49,6 +49,6 @@
     }
     else{
 	print 'no tengo sesion';
-	header("Location:http://index.php");
+	header("Location:index.php");
     }
 ?>

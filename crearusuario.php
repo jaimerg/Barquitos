@@ -15,6 +15,8 @@
     $boolean = false;
     $a = 0;
     $null = null;
+    
+    
 
     $conexion=mysql_connect("localhost","root","") or die ("no se puede conectar");
     mysql_select_db("barcos", $conexion) or die ("no se puede conectar");

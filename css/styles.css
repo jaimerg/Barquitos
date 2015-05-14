@@ -1,6 +1,7 @@
 /* ----------------- indice ----------------- */
 body{
     margin: 0px;
+    background: linear-gradient(#039 ,violet) repeat scroll 0 0 rgba(0,0,0,0);   
 }
 .titulos, #submit{
     text-align: center;
@@ -8,7 +9,7 @@ body{
 #contenedor, #contenedorpu{  
     height: 100%;
     width: 100%;
-    background: aliceblue;   
+    //background: linear-gradient(#039 ,violet) repeat scroll;   
 }
 #lista, #lista2{
     padding:15px;

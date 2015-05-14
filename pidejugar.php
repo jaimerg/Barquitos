@@ -24,6 +24,8 @@ while ($registro = mysqli_fetch_array($consulta)) {
 //        echo $q;
         $sql = mysqli_query($conexion,$q);  // insertar su id en mi peticion
         
+        $sql1 = mysqli_query("update usuarios set estado=2 where nick='".$nick."'");
+        $sql2 = mysqli_query($conexion,$sql1);
     }
     // update de mi registro
     if($registro['nick'] == $user2 && $registro['estado'] == 1){
@@ -31,7 +33,8 @@ while ($registro = mysqli_fetch_array($consulta)) {
 //        echo $q;
         $sql = mysqli_query($conexion,$q); // para insertar id en su peticion
     
-        
+        $sql3 = mysqli_query("update usuarios set estado=2 where nick='".$user2."'");
+        $sql4 = mysqli_query($conexion,$sql3);
     }
 }
 $respuesta = $respuesta . '}';

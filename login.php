@@ -28,7 +28,7 @@
     }
     
     if($usu == false){
-        header("Location:http://index.php");
+        header("Location:index.php");
     }
 
 ?>
