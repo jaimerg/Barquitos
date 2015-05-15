@@ -1,5 +1,5 @@
 <?php
-    session_start();
+session_start();
 
 $host="localhost";
 $user="root";
@@ -15,7 +15,7 @@ $estado = 3;
 
 while ($registro = mysqli_fetch_array($consulta)) {
     if ($registro['nick'] == $usuario) {
-        $query = "update usuarios set estado='".$estado."' where nick='".$usuario."' and password='".$pass."'";
+        $query = "update usuarios set estado='".$estado."' where nick='".$usuario."'";
         echo $query;
         $sql = mysqli_query($conexion, $query);
         

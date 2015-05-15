@@ -2,7 +2,7 @@ var letra = 'a';
 var divs = '';
 var divs2 = '';
 var barco = '';
-var mitablero = [];
+var mitablero = [[10],[10],[10],[10],[10],[10],[10],[10],[10],[10]];
 
 
 /*
@@ -448,7 +448,8 @@ function jugar(){
     if(empezar == true){
         cambioaestado3();
         generatablero();
-        alert(mitablero);
+        alert(JSON.stringify(mitablero));
+        insertatablero();
     }
     
 }
@@ -460,7 +461,7 @@ function cambioaestado3(){
     xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xmlHttp.onreadystatechange = function () {
         if (xmlHttp.readyState == 4) {
-            respuestapeticion(xmlHttp);
+            respcambioestado3x(xmlHttp);
         }
     };
     xmlHttp.send();
@@ -474,20 +475,61 @@ function respcambioestado3(){
         alert("estado cambiado");
     } 
 }
-
+//se guarda el tablero de juego en un array
 function generatablero(){
     
     for (var i = 0; i < 10; i++) {
+        
         for (var j = 0; j < 10; j++) {
             var barco = document.getElementById("t" + i +"t"+ j);
             var ocupado = barco.getAttribute('ocupado');
             if(ocupado == "no"){
-                mitablero.push("0");
+                mitablero[i][j]="0";
             }
             else if(ocupado == "si"){
-                mitablero.push("1");
+                mitablero[i][j]="1";
             }
         }
         
     }
+}
+//consulta para insertar mi tablero en ls BD
+function insertatablero(){
+    var urlDestino = "guardatablero.php";
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("POST", urlDestino, true);
+    xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xmlHttp.onreadystatechange = function () {
+        if (xmlHttp.readyState == 4) {
+            respcambioestado3x(xmlHttp);
+        }
+    };
+    var tablerojason = JSON.stringify(mitablero);
+    xmlHttp.send("tablero="+tablerojason);
+}
+
+function resptablero(){
+    if (xmlHttp.status == 200) {
+        var resp = xmlHttp.responseText;
+        var respJSON = JSON.parse(resp);
+        
+        alert("estado cambiado");
+    } 
+}
+
+function cumpruebaestado3(){
+    var urlDestino = "compruebaestado3.php";
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("POST", urlDestino, true);
+    xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xmlHttp.onreadystatechange = function () {
+        if (xmlHttp.readyState == 4) {
+            respcambioestado3x(xmlHttp);
+        }
+    };
+    xmlHttp.send();
+}
+
+function respestado3(){
+    
 }
