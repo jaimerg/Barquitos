@@ -32,15 +32,17 @@ while ($registro = mysqli_fetch_array($consulta)) {
 }
 
 $consulta2 = mysqli_query($conexion,"select * from usuarios");
+
 while ($registro = mysqli_fetch_array($consulta2)) {
-    if ($registro['nick'] == $idu2) {
+    if ($registro['id'] == $idu2) {
         if($registro['estado'] == 3){
             $u2 = true;
         }
     }
     
 }
-$respuesta = "{'usu1':'".$u1."', 'usu2':'".$usu2."'}";
+
+$respuesta = '{"usu1":"'.$u1.'", "usu2":"'.$u2.'"}';
 echo $respuesta;
 
 ?>

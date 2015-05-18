@@ -14,7 +14,7 @@ if (isset($_SESSION['user'])) {
             <title>Barcas</title>
             <!--link rel="icon" type="image/ico" href="/imagenes/favicon.ico" /> -->
         </head>
-        <body onload="tablero(); barcos(); tablero2();">
+        <body onload="tablero(); barcos(); tablero2(); inicio3();">
             <div id="contenedorp">
                 <table>
                     <tr>

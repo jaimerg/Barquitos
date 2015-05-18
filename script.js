@@ -257,6 +257,10 @@ function inicio2(){
 //Funcion para refrescar la lista de usuarios
     refrescar2();
 }
+function inicio3(){
+//Funcion para refrescar la lista de usuarios
+    refrescar3();
+}
 
 //tiempo del que se autorefrescará la lista
 function refrescar() {
@@ -277,6 +281,17 @@ function refrescar2() {
                 function () {
                     
                     consultaUsuarios2();
+                }
+        , 10000);
+}
+
+var intervalo = 0;
+function refrescar3() {
+        cumpruebaestado3();
+        intervalo = window.setInterval(
+                function () {
+                    
+                    cumpruebaestado3();
                 }
         , 10000);
 }
@@ -461,13 +476,13 @@ function cambioaestado3(){
     xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xmlHttp.onreadystatechange = function () {
         if (xmlHttp.readyState == 4) {
-            respcambioestado3x(xmlHttp);
+            respcambioestado3(xmlHttp);
         }
     };
     xmlHttp.send();
 }
 
-function respcambioestado3(){
+function respcambioestado3(xmlHttp){
     if (xmlHttp.status == 200) {
         var resp = xmlHttp.responseText;
         var respJSON = JSON.parse(resp);
@@ -501,14 +516,14 @@ function insertatablero(){
     xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xmlHttp.onreadystatechange = function () {
         if (xmlHttp.readyState == 4) {
-            respcambioestado3x(xmlHttp);
+            resptablero(xmlHttp);
         }
     };
     var tablerojason = JSON.stringify(mitablero);
     xmlHttp.send("tablero="+tablerojason);
 }
 
-function resptablero(){
+function resptablero(xmlHttp){
     if (xmlHttp.status == 200) {
         var resp = xmlHttp.responseText;
         var respJSON = JSON.parse(resp);
@@ -524,12 +539,22 @@ function cumpruebaestado3(){
     xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xmlHttp.onreadystatechange = function () {
         if (xmlHttp.readyState == 4) {
-            respcambioestado3x(xmlHttp);
+            respestado3(xmlHttp);
         }
     };
     xmlHttp.send();
 }
 
-function respestado3(){
-    
+function respestado3(xmlHttp){
+    if (xmlHttp.status == 200) {
+        var resp = xmlHttp.responseText;
+        var respJSON = JSON.parse(resp);
+        
+        var u1 = respJSON.usu1;
+        var u2 = respJSON.usu2;
+        
+        if(u1 == 1 && u2 == 1){
+            window.clearInterval(intervalo);
+        }
+    }
 }

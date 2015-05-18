@@ -15,7 +15,7 @@ $usuario = $_SESSION['user'];
 $tab = $_POST['tablero']; 
 //$markers = json_decode($tab);
 $query = "update usuarios set tablero='".$tab."' where nick='".$usuario."'";
-echo $query;
+//echo $query;
 $sql = mysqli_query($conexion, $query);
 //echo $tablero;
 

@@ -36,6 +36,8 @@ while ($registro = mysqli_fetch_array($consulta)) {
         $sql3 = mysqli_query("update usuarios set estado=2 where nick='".$user2."'");
         $sql4 = mysqli_query($conexion,$sql3);
     }
+    
+    
 }
 $respuesta = $respuesta . '}';
 echo $respuesta;
