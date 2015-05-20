@@ -261,7 +261,14 @@ function inicio3(){
 //Funcion para refrescar la lista de usuarios
     refrescar3();
 }
-
+var enpartida = false;
+function inicio4(){
+//Funcion para refrescar la lista de usuarios
+    if(enpartida==true){
+        refrescar4();
+    }
+    //refrescar3();
+}
 //tiempo del que se autorefrescará la lista
 function refrescar() {
         consultaUsuarios();
@@ -292,6 +299,15 @@ function refrescar3() {
                 function () {
                     
                     cumpruebaestado3();
+                }
+        , 10000);
+}
+function refrescar4() {
+        consultawin();
+        intervalo = window.setInterval(
+                function () {
+                    
+                    consultawin();
                 }
         , 10000);
 }
@@ -463,7 +479,7 @@ function jugar(){
     if(empezar == true){
         cambioaestado3();
         generatablero();
-        alert(JSON.stringify(mitablero));
+        //alert(JSON.stringify(mitablero));
         insertatablero();
     }
     
@@ -555,6 +571,32 @@ function respestado3(xmlHttp){
         
         if(u1 == 1 && u2 == 1){
             window.clearInterval(intervalo);
+            //alert("intervalo paradao!!!");
+            enpartida = true;
         }
     }
 }
+
+function consultawin(){
+    var urlDestino = "win.php";
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("POST", urlDestino, true);
+    xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xmlHttp.onreadystatechange = function () {
+        if (xmlHttp.readyState == 4) {
+            respwin(xmlHttp);
+        }
+    };
+    xmlHttp.send();
+}
+
+function respwin(xmlHttp){
+    if (xmlHttp.status == 200) {
+        var resp = xmlHttp.responseText;
+        var respJSON = JSON.parse(resp);
+    }
+}
+
+$("#tablero2">".divTablero").click(function tab2(){
+    
+});

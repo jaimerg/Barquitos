@@ -9,12 +9,13 @@ if (isset($_SESSION['user'])) {
 
     <html>
         <head>
+            <script src="jquery-1.11.2.min.js" type="text/javascript"></script>
             <script type="text/javascript" src="script.js"></script>
             <link href="css/principal.css" rel="stylesheet" type="text/css" />
             <title>Barcas</title>
             <!--link rel="icon" type="image/ico" href="/imagenes/favicon.ico" /> -->
         </head>
-        <body onload="tablero(); barcos(); tablero2(); inicio3();">
+        <body onload="tablero(); barcos(); tablero2(); inicio3(); inicio4();">
             <div id="contenedorp">
                 <table>
                     <tr>
