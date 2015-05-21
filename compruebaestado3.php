@@ -39,22 +39,11 @@ while ($registro = mysqli_fetch_array($consulta2)) {
         }
     }
 }
-
+/*
 if($u1==true && $u2==true){
-    /*************************/
-    /*-------------- Turnos de juego -----------------*/
-    $consultaturnos = mysqli_query($conexion,"select * from usuarios");
-    while ($registro = mysqli_fetch_array($consultaturnos)) {
-        if ($registro['nick'] == $usuario) {
-            //$query="insert into usuarios (nick,password,id,p_ganadas,p_perdidas,estado,peticion) values ('".$nick."','".$pass1."','".$null."','".$a."','".$a."','".$a."','".$a."')";
-            $turnos = "insert into partida (id_usu1,id_usu2,turno) values ('".$registro['id']."','".$registro['peticion']."','".$registro['id']."')";
-            echo $turnos;
-            $sql = mysqli_query($conexion, $turnos);
-        }
-    }
-    /*************************/
+    
 }
-
+*/
 
 
 $respuesta = '{"usu1":"'.$u1.'", "usu2":"'.$u2.'"}';

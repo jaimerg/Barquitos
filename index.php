@@ -8,8 +8,24 @@
     </head>
     <body onload="inici();">
         <div id="contenedor">
+            <div id="top">
+                <div id="top1">
+                    <h1 class="titulos"> Bienvenido al mejor juego de barcos de la historia de barcos </h1>
+                </div>
+                <div id="top2">
+                    
+                    <form method=post action="login.php">
+                        <span id="hijo">
+                        Nick<span> <input type="text" name="nick" placeholder="nick" class="inp" width="100px"></span>&nbsp;
+                        Contraseña<span> <input type="password" name="password" placeholder="password" class="inp"></span>&nbsp;
+                        <input type=submit value="Entrar">
+                        </span>
+                    </form>
+                    
+                </div>
+            </div>
             <br/>
-            <h1 class="titulos"> Bienvenido al mejor juego de barcos de la historia de barcos </h1>
+            
             <div id="lista">
                 <h3 class="titulos">Lista de usuarios conectados</h3>
                 <?php //require_once './llistatUsuaris.php'; ?>

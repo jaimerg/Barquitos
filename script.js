@@ -572,7 +572,8 @@ function respestado3(xmlHttp){
         if(u1 == 1 && u2 == 1){
             window.clearInterval(intervalo);
             //alert("intervalo paradao!!!");
-            enpartida = true;
+            juego();
+            //enpartida = true;
         }
     }
 }
@@ -596,7 +597,23 @@ function respwin(xmlHttp){
         var respJSON = JSON.parse(resp);
     }
 }
+function juego(){
+    $("#tablero2>.divTablero").click(function(evt){
+        var id= evt.target.id;
+        var res = id.split("y");
+ 
+        //console.log(res[1] +":"+ res[2]);
+        
+        var urlDestino = "click.php";
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open("POST", urlDestino, true);
+        xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xmlHttp.onreadystatechange = function () {
+            if (xmlHttp.readyState == 4) {
+                respwin(xmlHttp);
+            }
+        };
+        xmlHttp.send("fila="+res[1]+"&columna="+res[2]);
+    });
+}
 
-$("#tablero2">".divTablero").click(function tab2(){
-    
-});
