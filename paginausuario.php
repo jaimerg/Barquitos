@@ -2,14 +2,17 @@
     session_start();
     
     if(isset($_SESSION['user']) && isset($_SESSION['pass'])){
-        
-        $conexion=mysql_connect("localhost","root","") or die ("no se puede conectar");
-        mysql_select_db("barcos", $conexion) or die ("no se puede conectar");
 
-        $user = $_SESSION['user'];
+        $host="localhost";
+        $user="root";
+        $password="";
+        $database="barcos";
+        $conexion = mysqli_connect($host, $user, $password, $database);
+
+        $usuario = $_SESSION['user'];
         $pass = $_SESSION['pass'];
         $estado = 1;
-        $sql = mysql_query("update usuarios set estado='".$estado."' where nick='".$user."' and password='".$pass."'");
+        $sql = mysqli_query($conexion,"update usuarios set estado='".$estado."' where nick='".$usuario."' and password='".$pass."'");
         
         //  echo '<script>var nomUsuari ='.$_SESSION['user'].'</script>';
         
@@ -29,7 +32,7 @@
             <br/>
             <h1 class="titulos"> Bienvenido al mejor juego de barcos de la historia de barcos </h1>
             <div id="lista2">
-                <h3 class="titulos">Lista de usuarios conectados</h3>
+                <h2 class="titulos">Lista de usuarios conectados</h2>
                 <div id="listalista2"></div>
                 <span><a href="principal.php">página de juego</a></span>
                 <button onclick="pidejugar()">Retar Juagdor</button>
@@ -37,7 +40,24 @@
             </div>
             
             <div id="espaciousu">
-                <h3 class="titulos">Hola, <?php echo $_SESSION['user'] ?></h3>
+                <h2 class="titulos">Hola, <?php echo $_SESSION['user'] ?></h2><br>
+                <?php
+                    $consulta = mysqli_query($conexion,"select * from usuarios");
+                    while ($registro = mysqli_fetch_array($consulta)) {
+                        if ($registro['nick'] == $usuario) {
+                            ?><html><h3>Partidas ganadas: <?php echo $registro['p_ganadas']; ?></h3></html><?php
+                            ?><html><h3>Partidas perdidas: <?php echo $registro['p_perdidas']; ?></h3></html><?php
+                            ?><html><h3>Partidas perdidas: <?php $final= $registro['p_ganadas']-$registro['p_perdidas']; echo $final; ?></h3></html><?php
+                        }
+                    }
+                ?>
+                <h3>Top 5:</h3>
+                <h4><?php $consulta2 = mysqli_query($conexion,"SELECT nick, p_ganadas FROM usuarios order by p_ganadas desc LIMIT 5"); 
+                while ($registro = mysqli_fetch_array($consulta2)) {
+                    echo $registro[0]."  -  ".$registro[1]. "<br>";
+                }
+                ?></h4>
+                
             </div>
             
             <a href="desconexion.php"><img src="imagenes/barco-simple.png" class="barcosalida"></a> 

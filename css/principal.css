@@ -40,6 +40,28 @@ div {
     background-size: cover;
 }
 
+.divTableroAgua{
+    width: 50px;
+    height: 50px;
+    top: 50%;
+    bottom: 50%;
+    float: left;
+    
+    background-size: cover;
+    background-image: url(../imagenes/agua.jpg);
+}
+
+.divTableroTocado{
+    width: 50px;
+    height: 50px;
+    top: 50%;
+    bottom: 50%;
+    float: left;
+    
+    background-size: cover;
+    background-image: url(../imagenes/fuego.jpg);
+}
+
 #asd{
     width: 50px;
     height: 50px;

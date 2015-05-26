@@ -32,7 +32,7 @@ if (isset($_SESSION['user'])) {
             </div>
         </body>
     </html>
-    <?php
+<?php
 } else {
     
 }

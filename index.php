@@ -33,7 +33,7 @@
             </div>
             <div>
                 <div id="form">
-                    <h3 class="titulos">Login</h3>
+                    <h2 class="titulos">Login</h2>
                     <form method=post action="login.php">
                         <span class="bloque">&nbsp; Introduce tu nick de usuario</span><span class="bloque2"> <input type="text" name="nick" placeholder="nick"></span><br />
                         <span class="bloque">&nbsp; Introduce tu contraseña</span><span class="bloque2"> <input type="password" name="password" placeholder="password"></span><br />
@@ -44,7 +44,7 @@
                     </form>
                 </div>
                 <div id="crearusu">
-                    <h3 class="titulos">Crear usuario</h3>
+                    <h2 class="titulos">Crear usuario</h2>
                     <form method=post action="crearusuario.php">
                         <span class="bloque">&nbsp; Introduce tu nick de usuario</span><span class="bloque2"> <input type="text" name="cnick" placeholder="nick"></span><br />
                         <span class="bloque">&nbsp; Introduce tu contraseña</span><span class="bloque2"> <input type="password" name="cpassword" placeholder="password"></span><br />

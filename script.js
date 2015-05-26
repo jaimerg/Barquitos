@@ -316,8 +316,6 @@ function refrescar4() {
 function lista() {
    //crear consulta ajax a php que retorne una estructura json con los usuarios conectados
    //indicar la funcion encargada de recibir la respuesta
-   
-   
 }
 
 
@@ -578,6 +576,48 @@ function respestado3(xmlHttp){
     }
 }
 
+function juego(){
+    $("#tablero2>.divTablero").click(function(evt){
+        
+        var id= evt.target.id;
+        var res = id.split("y");
+ 
+        //console.log(res[1] +":"+ res[2]);
+        
+        var urlDestino = "click.php";
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open("POST", urlDestino, true);
+        xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xmlHttp.onreadystatechange = function () {
+            if (xmlHttp.readyState == 4) {
+                respuestaclick(xmlHttp);
+            }
+        };
+        xmlHttp.send("fila="+res[1]+"&columna="+res[2]);
+    });
+}
+
+function respuestaclick(xmlHttp){
+    if (xmlHttp.status == 200) {
+        var resp = xmlHttp.responseText;
+        var respJSON = JSON.parse(resp);
+        
+        var tiro = respJSON.tiro;
+        var fila = respJSON.fila;
+        var columna = respJSON.columna;
+        var id = "y"+fila+"y"+columna; 
+        
+        var e = document.getElementById(id);
+        if(tiro === "0"){
+            e.className = "divTableroAgua";           
+        }
+        if(tiro === "1"){
+            e.className = "divTableroTocado";
+        }
+        consultawin();
+    }
+}
+
 function consultawin(){
     var urlDestino = "win.php";
     var xmlHttp = new XMLHttpRequest();
@@ -595,25 +635,14 @@ function respwin(xmlHttp){
     if (xmlHttp.status == 200) {
         var resp = xmlHttp.responseText;
         var respJSON = JSON.parse(resp);
+        
+        var win = respJSON.win;
+        
+        if(win == true){
+            alert("Fin del juago, ¡¡¡HAS GANADO!!!");
+        }
+        else{
+            alert("sigue jugando");
+        }
     }
 }
-function juego(){
-    $("#tablero2>.divTablero").click(function(evt){
-        var id= evt.target.id;
-        var res = id.split("y");
- 
-        //console.log(res[1] +":"+ res[2]);
-        
-        var urlDestino = "click.php";
-        var xmlHttp = new XMLHttpRequest();
-        xmlHttp.open("POST", urlDestino, true);
-        xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xmlHttp.onreadystatechange = function () {
-            if (xmlHttp.readyState == 4) {
-                respwin(xmlHttp);
-            }
-        };
-        xmlHttp.send("fila="+res[1]+"&columna="+res[2]);
-    });
-}
-
