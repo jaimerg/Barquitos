@@ -13,54 +13,38 @@ $user2 = $_SESSION['user']; // Mi nombre de usuario
 $nick = $_POST['nombre']; // Nombre del jugador al que se reta
 $respuesta = '{'; 
 $ok = false; 
-
+$estado=2;
 
 $consulta = mysqli_query($conexion,"select * from usuarios");
 while ($registro = mysqli_fetch_array($consulta)) {
-    if($registro['nick'] == $user2 && $registro['estado'] == 1){
+    if($registro['nick'] == $user2){
         $ok = "true";
         $respuesta = $respuesta . '"disponible":"'.$ok.'"';
         $q="update usuarios set peticion='".$registro['id']."' where nick='".$nick."'";
-//        echo $q;
+//      echo $q;
         $sql = mysqli_query($conexion,$q);  // insertar su id en mi peticion
-        /*
-        $sql1 = mysqli_query("update usuarios set estado=2 where nick='".$nick."'");
-        $sql2 = mysqli_query($conexion,$sql1);*/
+        // cambio a estado 2
+        //$sql2 = mysqli_query($conexion, "update usuarios set estado='".$estado."' where nick='".$user2."'");
+        
     }
 }
 $consulta2 = mysqli_query($conexion,"select * from usuarios");
 while ($registro = mysqli_fetch_array($consulta2)) {
     // update de mi registro
-    if($registro['nick'] == $nick && $registro['estado'] == 1){
+    if($registro['nick'] == $nick){
         $q="update usuarios set peticion='".$registro['id']."' where nick='".$user2."'";
 //        echo $q;
         $sql = mysqli_query($conexion,$q); // para insertar id en su peticion
-    /*
-        $sql3 = mysqli_query("update usuarios set estado=2 where nick='".$user2."'");
-        $sql4 = mysqli_query($conexion,$sql3);*/
+        // cambio a estado 2
+        //$sql3 = mysqli_query($conexion, "update usuarios set estado='".$estado."' where nick='".$nick."'");
+    
     }
     
     
 }
-// estado 2
-$estado=2;
-$consulta3 = mysqli_query($conexion,"select * from usuarios");
-while ($registro = mysqli_fetch_array($consulta3)) {
-    if($registro['nick'] == $nick && $registro['estado'] == 1){
-                
-        $sql1 = mysqli_query("update usuarios set estado=2 where nick='".$nick."'");
-        $sql2 = mysqli_query($conexion,$sql1);
-    }
-}
-$consulta4 = mysqli_query($conexion,"select * from usuarios");
-while ($registro = mysqli_fetch_array($consulta4)) {
-    if($registro['nick'] == $user2 && $registro['estado'] == 1){
-        $sql3 = mysqli_query("update usuarios set estado='".$estado."' where nick='".$user2."'");
-        $sql4 = mysqli_query($conexion,$sql3);
-    }
-    
-    
-}
+
+
+
 /*************************/
     $id_usu1;
     $id_usu2;

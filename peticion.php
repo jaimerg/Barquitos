@@ -15,7 +15,7 @@ $ok = "nok";
 $respuesta = '{'; 
 
 while ($registro = mysqli_fetch_array($consulta)) {
-    if($registro['nick'] == $user2 && $registro['estado'] == 1){
+    if($registro['nick'] == $user2 /*&& $registro['estado'] == 1*/){
         $ok = "ok";
         $respuesta = $respuesta . '"peticion":"'.$ok.'"';
     }

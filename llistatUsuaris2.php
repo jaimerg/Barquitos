@@ -1,11 +1,15 @@
 <?php
+session_start();
+
 $host="localhost";
 $user="root";
 $password="";
 $database="barcos";
 $conexion = mysqli_connect($host, $user, $password, $database);
 
-$consulta = mysqli_query($conexion,"select * from usuarios");
+$usuario = $_SESSION['user'];
+
+$consulta = mysqli_query($conexion,"select * from usuarios where nick!='".$usuario."'");
 
 $i=0;
 $respuesta = '{'; 

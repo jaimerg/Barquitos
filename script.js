@@ -318,8 +318,6 @@ function lista() {
    //indicar la funcion encargada de recibir la respuesta
 }
 
-
-
 //envia consulta para obtener la lista de usuarios conectados (( Lista 1 ))
 function consultaUsuarios(){
     var urlDestino = "llistatUsuaris.php";
@@ -385,7 +383,7 @@ function listaUsuarios2(xmlHttp){
             var nombre = respJSON["nombre"+i].nombre;
             var id = respJSON["nombre"+i].id;
             var peticion = respJSON["nombre"+i].peticion;
-            document.getElementById("listalista2").innerHTML += "<span>"+nombre+"</span><button name='"+nombre+"' value='Retar' onclick='pidejugar(name)'>"+nombre+"</button><br />";
+            document.getElementById("listalista2").innerHTML += "<button name='"+nombre+"' value='Retar' onclick='pidejugar(name)' class='botonreto'>"+nombre+"</button><br />";
             
             //array.push(nombre);
             if(myId == peticion){
@@ -433,10 +431,11 @@ function resppidejuagar(xmlHttp){
         
         var ok = respJSON.disponible;
         if(ok == false){
-            alert("Este jugador no existe, prueba con otro");
+            //alert("Este jugador no existe, prueba con otro");
         }
         else if(ok == true){
-            alert("Empieza el juego en 3, 2, 1...");
+            //alert("Empieza el juego en 3, 2, 1...");
+            //peticion();
         }
     }
 }
@@ -480,7 +479,6 @@ function jugar(){
         //alert(JSON.stringify(mitablero));
         insertatablero();
     }
-    
 }
 
 function cambioaestado3(){
@@ -642,7 +640,7 @@ function respwin(xmlHttp){
             alert("Fin del juago, ¡¡¡HAS GANADO!!!");
         }
         else{
-            alert("sigue jugando");
+            //alert("sigue jugando");
         }
     }
 }

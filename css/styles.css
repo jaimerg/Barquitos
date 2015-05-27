@@ -1,4 +1,6 @@
 /* ----------------- indice ----------------- */
+
+
 body{
     margin: 0px;
     background: linear-gradient(#035FAF, #0089FF) repeat scroll 0 0 rgba(0,0,0,0);
@@ -44,6 +46,15 @@ body{
     background-color: cadetblue;
     border-radius: 30px;
 }
+#lista2{
+    text-align: center;
+}
+.botonreto{
+    width: 200px;
+    cursor: pointer;
+    
+}
+
 #form, #crearusu{
     padding:15px;
     color:#fff;
@@ -110,6 +121,7 @@ body{
     height: 200px;
     width: 200px;
 }
+
 
 /* ----------------- pagina principal ----------------- */
 /*

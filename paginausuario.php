@@ -34,8 +34,10 @@
             <div id="lista2">
                 <h2 class="titulos">Lista de usuarios conectados</h2>
                 <div id="listalista2"></div>
+                <!--
                 <span><a href="principal.php">página de juego</a></span>
                 <button onclick="pidejugar()">Retar Juagdor</button>
+                -->
                 
             </div>
             
@@ -47,7 +49,7 @@
                         if ($registro['nick'] == $usuario) {
                             ?><html><h3>Partidas ganadas: <?php echo $registro['p_ganadas']; ?></h3></html><?php
                             ?><html><h3>Partidas perdidas: <?php echo $registro['p_perdidas']; ?></h3></html><?php
-                            ?><html><h3>Partidas perdidas: <?php $final= $registro['p_ganadas']-$registro['p_perdidas']; echo $final; ?></h3></html><?php
+                            ?><html><h3>Puntos totales: <?php $final= $registro['p_ganadas']-$registro['p_perdidas']; echo $final; ?></h3></html><?php
                         }
                     }
                 ?>
