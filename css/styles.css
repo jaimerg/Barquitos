@@ -3,6 +3,7 @@
 
 body{
     margin: 0px;
+    //background-image: url(../imagenes/2daguerra.jpg);
     background: linear-gradient(#035FAF, #0089FF) repeat scroll 0 0 rgba(0,0,0,0);
     //background-color: darkcyan;
 }
@@ -45,10 +46,12 @@ body{
     background:#039;
     background-color: cadetblue;
     border-radius: 30px;
-}
-#lista2{
     text-align: center;
 }
+#lista2{
+   // text-align: center;
+}
+
 .botonreto{
     width: 200px;
     cursor: pointer;

@@ -261,6 +261,7 @@ function inicio3(){
 //Funcion para refrescar la lista de usuarios
     refrescar3();
 }
+/*
 var enpartida = false;
 function inicio4(){
 //Funcion para refrescar la lista de usuarios
@@ -268,7 +269,7 @@ function inicio4(){
         refrescar4();
     }
     //refrescar3();
-}
+}*/
 //tiempo del que se autorefrescará la lista
 function refrescar() {
         consultaUsuarios();
@@ -302,12 +303,13 @@ function refrescar3() {
                 }
         , 10000);
 }
+var intervaloEstado;
 function refrescar4() {
-        consultawin();
-        intervalo = window.setInterval(
+        //consultaturno();
+        intervaloEstado = window.setInterval(
                 function () {
                     
-                    consultawin();
+                    consultaturno();
                 }
         , 10000);
 }
@@ -346,7 +348,7 @@ function listaUsuarios(xmlHttp){
         for(var i=1; i<=num_usuarios; i++){
             //var troll = "nombre"+i;
             var nombre = respJSON["nombre"+i];
-            document.getElementById("listalista").innerHTML += nombre+"<br />";
+            document.getElementById("listalista").innerHTML += "<span class='botonn1'>"+nombre+"</span><br />";
             //document.getElementById("listalista2").innerHTML += nombre+"<br />";
             array.push(nombre);
         }
@@ -388,13 +390,34 @@ function listaUsuarios2(xmlHttp){
             //array.push(nombre);
             if(myId == peticion){
                 window.location="principal.php";
+                cambioaestado2();
             }
         }
     }
 }
-function reto(nombre){
-    alert(nombre);
+function cambioaestado2(){
+    function peticion(){
+    var urlDestino = "cambioaestado2.php";
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("POST", urlDestino, true);
+    xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xmlHttp.onreadystatechange = function () {
+        if (xmlHttp.readyState == 4) {
+            respestado2(xmlHttp);
+        }
+    };
+    xmlHttp.send();
 }
+}
+function respestado2(xmlHttp){
+    if (xmlHttp.status == 200) {
+        var resp = xmlHttp.responseText;
+        var respJSON = JSON.parse(resp);
+        
+        
+    }  
+}
+
 //pidejugar enviara un ajax que pregunte contra quien quiere jugar 
 
 function pidejugar(name){
@@ -478,6 +501,9 @@ function jugar(){
         generatablero();
         //alert(JSON.stringify(mitablero));
         insertatablero();
+        
+        //llama a la consulta turno
+        refrescar4();
     }
 }
 
@@ -541,6 +567,8 @@ function resptablero(xmlHttp){
         var respJSON = JSON.parse(resp);
         
         alert("estado cambiado");
+        
+        
     } 
 }
 
@@ -575,8 +603,10 @@ function respestado3(xmlHttp){
 }
 
 function juego(){
+    ///
+    
     $("#tablero2>.divTablero").click(function(evt){
-        
+         $("#tablero2>.divTablero").unbind();
         var id= evt.target.id;
         var res = id.split("y");
  
@@ -642,5 +672,39 @@ function respwin(xmlHttp){
         else{
             //alert("sigue jugando");
         }
+    }
+}
+
+
+function consultaturno(){
+    var urlDestino = "turno.php";
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("POST", urlDestino, true);
+    xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xmlHttp.onreadystatechange = function () {
+        if (xmlHttp.readyState == 4) {
+            respturno(xmlHttp);
+        }
+    };
+    xmlHttp.send();
+}
+
+function respturno(xmlHttp){
+    if (xmlHttp.status == 200) {
+        var resp = xmlHttp.responseText;
+        var respJSON = JSON.parse(resp);
+        
+        var turno = respJSON.turno;
+        
+        if(turno==1){
+            console.log("me toca");
+            alert("me toca");
+            juego();
+        }
+        if(turno==0){
+            console.log("No me toca");
+        }
+        
+        
     }
 }

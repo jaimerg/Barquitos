@@ -34,6 +34,18 @@ while ($registro = mysqli_fetch_array($consulta2)) {
             }
         }
     }
+    if($tiro==0){
+        $query123 = mysqli_query($conexion,"select * from partida where id_partida=(select id_partida from usuarios where nick='".$usuario."')");
+        //echo $query123;
+        while ($registro = mysqli_fetch_array($query123)) {
+            //if($registro['nick'] == $usuario){
+                if($registro['turno']==$_SESSION['id']){
+                    $query321 = "update partida set turno='".$_SESSION['idc']."' where turno='".$_SESSION['id']."'";
+                    $sql321 = mysqli_query($conexion, $query321);
+                }
+           // }
+        }
+    }
   
     //echo "tiro: ".$tiro;
      
