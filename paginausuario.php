@@ -2,11 +2,15 @@
     session_start();
     
     if(isset($_SESSION['user']) && isset($_SESSION['pass'])){
-
+        /*
         $host="localhost";
         $user="root";
         $password="";
-        $database="barcos";
+        $database="barcos";*/
+        $host="mysql.hostinger.es";
+        $user="u883679537_usu";
+        $password="95826440";
+        $database="u883679537_1";
         $conexion = mysqli_connect($host, $user, $password, $database);
 
         $usuario = $_SESSION['user'];

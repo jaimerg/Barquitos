@@ -13,9 +13,11 @@
     $_SESSION['pass'] = $_POST['password'];
     $pass = $_POST['password'];
     $usu = false;
-
+/*
     $conexion=mysql_connect("localhost","root","") or die ("no se puede conectar");
-    mysql_select_db("barcos", $conexion) or die ("no se puede conectar");
+    mysql_select_db("barcos", $conexion) or die ("no se puede conectar");*/
+    $conexion=mysql_connect("mysql.hostinger.es","u883679537_usu","95826440") or die ("no se puede conectar");
+    mysql_select_db("u883679537_1", $conexion) or die ("no se puede conectar");
 	
     $consulta = mysql_query("select * from usuarios");
         
