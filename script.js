@@ -396,7 +396,7 @@ function listaUsuarios2(xmlHttp){
     }
 }
 function cambioaestado2(){
-    function peticion(){
+  
     var urlDestino = "cambioaestado2.php";
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open("POST", urlDestino, true);
@@ -407,7 +407,7 @@ function cambioaestado2(){
         }
     };
     xmlHttp.send();
-}
+
 }
 function respestado2(xmlHttp){
     if (xmlHttp.status == 200) {
