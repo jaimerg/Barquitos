@@ -1,0 +1,79 @@
+/* ----------------- pagina principal ----------------- */
+
+body{
+    margin: 0px;
+}
+
+td{
+    height: 100px;
+    width: 100px;
+    text-align: center;
+     vertical-align: middle;
+}
+
+#contenedorp{
+    background  : aliceblue;
+    //text-align: center;
+    height: 100%;
+    width: 100%;
+}
+
+div {
+    display: inline-block;
+}
+
+#tablero, #tablero2{
+    min-width: 520px;
+}
+
+#contenedorp > div {
+    vertical-align: top;
+    width: 500px;
+}
+.divTablero{
+    width: 50px;
+    height: 50px;
+    top: 50%;
+    bottom: 50%;
+    float: left;
+    background-image: url(../imagenes/mar.png);
+    background-size: cover;
+}
+
+.divTableroAgua{
+    width: 50px;
+    height: 50px;
+    top: 50%;
+    bottom: 50%;
+    float: left;
+    
+    background-size: cover;
+    background-image: url(../imagenes/agua.jpg);
+}
+
+.divTableroTocado{
+    width: 50px;
+    height: 50px;
+    top: 50%;
+    bottom: 50%;
+    float: left;
+    
+    background-size: cover;
+    background-image: url(../imagenes/fuego.jpg);
+}
+
+#asd{
+    width: 50px;
+    height: 50px;
+    top: 50%;
+    bottom: 50%;
+}
+
+.barcosalida{
+    width: 100px;
+    height: 100px;
+    /*float: right;*/
+    position:absolute;
+    bottom:0px;
+    right:40px;
+}

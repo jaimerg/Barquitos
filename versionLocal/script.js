@@ -667,7 +667,7 @@ function respwin(xmlHttp){
         var win = respJSON.win;
         
         if(win == true){
-            alert("Fin del juago, ¡¡¡HAS GANADO!!!");
+            alert("Fin del juago, HAS GANADO!!!");
         }
         else{
             //alert("sigue jugando");

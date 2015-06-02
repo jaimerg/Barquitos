@@ -1,0 +1,153 @@
+/* ----------------- indice ----------------- */
+
+
+body{
+    margin: 0px;
+    //background-image: url(../imagenes/2daguerra.jpg);
+    background: linear-gradient(#035FAF, #0089FF) repeat scroll 0 0 rgba(0,0,0,0);
+    //background-color: darkcyan;
+}
+#top{
+    background: black;
+    width: 100%;
+    height: auto;
+    display: flex;
+}
+#top1{
+    width: 66%;
+    color: azure;
+}
+#top2{
+    width: 33%;
+    color: azure;
+}
+#hijo{
+    vertical-align: middle;
+}
+.inp{
+    width: 100px;
+    //border-radius: 10px;
+}
+
+.titulos, #submit{
+    text-align: center;
+}
+#contenedor, #contenedorpu{  
+    height: 100%;
+    width: 100%;
+    //background: linear-gradient(#039 ,violet) repeat scroll;   
+}
+#lista, #lista2{
+    padding:15px;
+    color:#fff;
+    width:40%;
+    height: auto;
+    margin:40px;
+    background:#039;
+    background-color: cadetblue;
+    border-radius: 30px;
+    text-align: center;
+}
+#lista2{
+   // text-align: center;
+}
+
+.botonreto{
+    width: 200px;
+    cursor: pointer;
+    
+}
+
+#form, #crearusu{
+    padding:15px;
+    color:#fff;
+    /*width:40%;*/
+    height: auto;
+    margin:40px;
+    background-color: cadetblue;
+    border-radius: 30px;
+}
+
+#espaciousu{
+    padding:15px;
+    color:#fff;
+    width:40%;
+    height: auto;
+    margin:40px;
+    background-color: cadetblue;
+    border-radius: 30px;
+}
+
+#lista:hover{
+    background-color: burlywood;
+}
+#form:hover{
+    background-color: burlywood;
+}
+#crearusu:hover{
+    background-color: burlywood;
+}
+#lista2:hover{
+    background-color: burlywood;
+}
+#espaciousu:hover{
+    background-color: burlywood;
+}
+/* formulario */
+.bloque, .bloque2{
+    width: 250px;
+    height: 25px;
+    display: inline-block;
+}
+
+#contenedor>div{
+    float: left;
+}
+
+#contenedorpu>div{
+    float: left;
+}
+/*
+.desconexion{
+    float: right;
+}*/
+.barcosalida{
+    width: 100px;
+    height: 100px;
+    /*float: right;*/
+    position:absolute;
+    bottom:0px;
+    right:40px;
+}
+
+#barcop{
+    height: 200px;
+    width: 200px;
+}
+
+
+/* ----------------- pagina principal ----------------- */
+/*
+#contenedorp{
+    text-align: center;
+}
+
+#contenedor>div{
+    float: left;
+}
+
+.divTablero{
+    width: 50px;
+    height: 50px;
+    top: 50%;
+    bottom: 50%;
+}
+
+#asd{
+    width: 50px;
+    height: 50px;
+    top: 50%;
+    bottom: 50%;
+}
+*/
+
