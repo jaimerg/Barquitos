@@ -1,10 +1,22 @@
 <?php
 session_start();
-
+/*
 $conexion = mysql_connect("localhost", "root", "") or die("no se puede conectar");
-mysql_select_db("barcos", $conexion) or die("no se puede conectar");/*
+mysql_select_db("barcos", $conexion) or die("no se puede conectar");
 $conexion=mysql_connect("mysql.hostinger.es","u883679537_usu","95826440") or die ("no se puede conectar");
     mysql_select_db("u883679537_1", $conexion) or die ("no se puede conectar");*/
+
+$host="localhost";
+$user="root";
+$password="";
+$database="barcos";/*
+$host="mysql.hostinger.es";
+$user="u883679537_usu";
+$password="95826440";
+$database="u883679537_1";*/
+
+
+$conexion = mysqli_connect($host, $user, $password, $database);
 
 if (isset($_SESSION['user'])) {
     ?>
