@@ -32,10 +32,10 @@
     $conexion = mysqli_connect($host, $usuario, $password, $database);
     
 	
-    $consulta = mysql_query("select * from usuarios");
+    $consulta = mysqli_query($conexion,"select * from usuarios");
     
     
-    while($registro=mysql_fetch_array($consulta)){
+    while($registro=mysqli_fetch_array($consulta)){
         if($registro['nick'] == $nick && $registro['password'] == $pass){
             $_SESSION['id'] = $registro['id'];
             header("Location:paginausuario.php");

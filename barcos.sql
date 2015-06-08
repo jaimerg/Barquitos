@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `p_perdidas` int(11) NOT NULL,
   `estado` int(11) NOT NULL,
   `peticion` int(11) NOT NULL,
-  `tablero` varchar(250) COLLATE utf8_spanish_ci NOT NULL,
+  `tablero` varchar(500) COLLATE utf8_spanish_ci NOT NULL,
   `id_partida` int(11) NOT NULL,
   PRIMARY KEY (`nick`),
   UNIQUE KEY `id` (`id`)

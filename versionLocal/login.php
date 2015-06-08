@@ -31,7 +31,7 @@
 
     $conexion = mysqli_connect($host, $user, $password, $database);
 	
-    $consulta = mysqli_query("select * from usuarios");
+    $consulta = mysqli_query($conexion,"select * from usuarios");
         
     while($registro=mysqli_fetch_array($consulta)){
         if($registro['nick'] == $nick && $registro['password'] == $pass){
