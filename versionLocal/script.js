@@ -665,9 +665,11 @@ function respwin(xmlHttp){
         var respJSON = JSON.parse(resp);
         
         var win = respJSON.win;
+        var ganador = respJSON.ganador;
         
         if(win == true){
             alert("Fin del juago, HAS GANADO!!!");
+            console.log(ganador);
         }
         else{
             //alert("sigue jugando");
@@ -704,7 +706,28 @@ function respturno(xmlHttp){
         if(turno==0){
             console.log("No me toca");
         }
+    }
+}
+
+function finpartida(){
+    var urlDestino = "finpartida.php";
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("POST", urlDestino, true);
+    xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xmlHttp.onreadystatechange = function () {
+        if (xmlHttp.readyState == 4) {
+            respfinpartida(xmlHttp);
+        }
+    };
+    xmlHttp.send();
+}
+
+function respfinpartida(xmlHttp){
+    if (xmlHttp.status == 200) {
+        var resp = xmlHttp.responseText;
+        var respJSON = JSON.parse(resp);
         
+        //var turno = respJSON.turno;
         
     }
 }
