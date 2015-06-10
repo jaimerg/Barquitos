@@ -51,16 +51,19 @@
                     $consulta = mysqli_query($conexion,"select * from usuarios");
                     while ($registro = mysqli_fetch_array($consulta)) {
                         if ($registro['nick'] == $usuario) {
+                            $final= $registro['p_ganadas']-$registro['p_perdidas'];
+                            
                             ?><html><h3>Partidas ganadas: <?php echo $registro['p_ganadas']; ?></h3></html><?php
                             ?><html><h3>Partidas perdidas: <?php echo $registro['p_perdidas']; ?></h3></html><?php
-                            ?><html><h3>Puntos totales: <?php $final= $registro['p_ganadas']-$registro['p_perdidas']; echo $final; ?></h3></html><?php
+                            ?><html><h3>Puntos totales: <?php echo $final; ?></h3></html><?php
                         }
                     }
                 ?>
                 <h3>Top 5:</h3>
-                <h4><?php $consulta2 = mysqli_query($conexion,"SELECT nick, p_ganadas FROM usuarios order by p_ganadas desc LIMIT 5"); 
+                <h4><?php $consulta2 = mysqli_query($conexion,"SELECT nick, p_ganadas, p_perdidas FROM usuarios order by p_ganadas desc LIMIT 5"); 
                 while ($registro = mysqli_fetch_array($consulta2)) {
-                    echo $registro[0]."  -  ".$registro[1]. "<br>";
+                    $final= $registro[1]-$registro[2];
+                    echo $registro[0]."  -  ".$final. "<br>";
                 }
                 ?></h4>
                 
