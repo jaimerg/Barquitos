@@ -27,19 +27,8 @@ while ($registro = mysqli_fetch_array($consulta2)) {
     $tablero = $registro['tablero'];
     $tableroArray = json_decode($tablero);
     $tiro = $tableroArray[$fila][$columna]; 
-    if($tiro==1){
-        $tableroArray[$fila][$columna]=0;
-        $arrayjson = json_encode($tableroArray);
-
-        $query50 = mysqli_query($conexion,"select * from usuarios");
-        while ($registro = mysqli_fetch_array($query50)) {
-            if($registro['nick'] == $usuario){    
-                $query123 = "update usuarios set tablero='".$arrayjson."' where id='".$registro['peticion']."'";
-                $sql123 = mysqli_query($conexion, $query123);
-            }
-        }
-    }
-    if($tiro==0){
+    
+    if($tiro==0 || $tiro=="0"){
         $query123 = mysqli_query($conexion,"select * from partida where id_partida=(select id_partida from usuarios where nick='".$usuario."')");
         //echo $query123;
         while ($registro = mysqli_fetch_array($query123)) {
@@ -51,13 +40,26 @@ while ($registro = mysqli_fetch_array($consulta2)) {
            // }
         }
     }
+    
+    else if($tiro==1 || $tiro=="1"){
+        $tableroArray[$fila][$columna]="0";
+        $arrayjson = json_encode($tableroArray);
+
+        $query50 = mysqli_query($conexion,"select * from usuarios");
+        while ($registro = mysqli_fetch_array($query50)) {
+            if($registro['nick'] == $usuario){    
+                $query123 = "update usuarios set tablero='".$arrayjson."' where id='".$registro['peticion']."'";
+                $sql123 = mysqli_query($conexion, $query123);
+            }
+        }
+    }
+    
   
     //echo "tiro: ".$tiro;
      
 }
 $respuesta = '{"tiro":"'.$tiro.'","fila":"'.$fila.'","columna":"'.$columna.'"}';
 echo $respuesta;
-
 
 //$consulta = mysqli_query($conexion,"select * from usuarios");
 /*$consulta = mysqli_query($conexion,"select tablero from usuarios where id=' '");

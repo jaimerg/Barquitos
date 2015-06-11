@@ -17,7 +17,8 @@ $conexion=mysql_connect("mysql.hostinger.es","u883679537_usu","95826440") or die
     $password="95826440";
     $database="u883679537_1";
 
-    $conexion = mysqli_connect($host, $usuario, $password, $database);
+
+$conexion = mysqli_connect($host, $user, $password, $database);
 
 if (isset($_SESSION['user'])) {
     ?>
@@ -39,7 +40,7 @@ if (isset($_SESSION['user'])) {
                     </tr>
                     <tr>
                         <td><div id="barcos"></div> <!-- Aquí se generan los barcos para arratrar --></td>
-                        <td><span>Dale listo para jugar</span><input type="checkbox" id="listo"><button id="jugar" onclick="jugar();">Jugar</button></td>                    
+                        <td id="turnos"><span>Dale listo para jugar</span><input type="checkbox" id="listo"><button id="jugar" onclick="jugar();">Jugar</button></td>                    
                     </tr>
                 </table>
                

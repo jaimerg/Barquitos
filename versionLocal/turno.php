@@ -39,3 +39,4 @@ if($ganador !=-1 && $ganador!=$_SESSION['id']){
 
 echo $respuesta;
 
+?>

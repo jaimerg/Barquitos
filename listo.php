@@ -16,14 +16,14 @@ $consulta = mysqli_query($conexion,"select * from usuarios");
 $usuario = $_SESSION['user'];
 $pass = $_SESSION['pass'];
 $estado = 3;
-
+$_SESSION['ganador'];
 $_SESSION['id'];
 $_SESSION['idc'];
 
 while ($registro = mysqli_fetch_array($consulta)) {
     if ($registro['nick'] == $usuario) {
         $query = "update usuarios set estado='".$estado."' where nick='".$usuario."'";
-        echo $query;
+        //echo $query;
         $sql = mysqli_query($conexion, $query);
         
         //variables de sesion para la partida

@@ -16,11 +16,13 @@ $usuario = $_SESSION['user'];
 
 $consulta = mysqli_query($conexion,"select * from usuarios");
 
-$query = "SELECT tablero from usuarios  where id=(SELECT peticion from usuarios where nick='".$usuario."')"; 
+$query = "SELECT tablero,id,id_partida from usuarios  where id=(SELECT peticion from usuarios where nick='".$usuario."')"; 
 $consulta2 = mysqli_query($conexion, $query);
 
+$idpartida;
 $y=0;
-$win = false;
+$win = "false";
+$ganador=-1;
 while ($registro = mysqli_fetch_array($consulta2)) {
     $tablero = $registro['tablero'];
     $tableroArray = json_decode($tablero);
@@ -32,13 +34,26 @@ while ($registro = mysqli_fetch_array($consulta2)) {
             }
         }
     } 
+    
+   
+   // $ganador=$registro['id'];
+    
+    $idpartida = $registro['id_partida'];
 }
 
 if($y == 100){
-    $win = true;
+    $win = "true";
+    $ganador=$_SESSION['id'];
+     $_SESSION['ganador'] = $ganador;
+    $query = mysqli_query($conexion,"update partida set ganador='".$ganador."' where id_partida='".$idpartida."'");
+    
 }
 
-$respuesta = '{"win":"'.$win.'"}';
+
+
+
+//$respuesta = '{"win":"'.$win.'", "ganador":"'.$_SESSION['ganador'].'"}';
+$respuesta = '{"win":"'.$win.'", "ganador":"'.$ganador.'"}';
 echo $respuesta
 
 ?>
