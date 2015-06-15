@@ -25,20 +25,18 @@
     $password="";
     $database="barcos";*/
     $host="mysql.hostinger.es";
-    $usuario="u883679537_usu";
+    $user="u883679537_usu";
     $password="95826440";
     $database="u883679537_1";
 
-    $conexion = mysqli_connect($host, $usuario, $password, $database);
-    
+    $conexion = mysqli_connect($host, $user, $password, $database);
 	
     $consulta = mysqli_query($conexion,"select * from usuarios");
-    
-    
+        
     while($registro=mysqli_fetch_array($consulta)){
         if($registro['nick'] == $nick && $registro['password'] == $pass){
             $_SESSION['id'] = $registro['id'];
-            header("Location:paginausuario.php");
+            header("Location:http://barquitos.hol.es/paginausuario.php");
             $usu = true;
         }
     }

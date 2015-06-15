@@ -55,8 +55,10 @@ function barcos() {
     barco = barco + "<td><div id='divBarco1'> <img id='barco1' long='1' ori='h' bdisp='4' draggable='true' ondragstart='drag(event)' src='imagenes/barco1.png' width='50px' height='50px'> </div></td>";
     barco = barco + "<td><div id='divBarco2'> <img id='barco2' long='2' ori='h' bdisp='3' draggable='true' ondragstart='drag(event)' onclick='orientacion(this);' src='imagenes/barcobarcoh.png'  width='100px' height='50px'> </div></td>";
     barco = barco + "<td><div id='divBarco3'> <img id='barco3' long='3' ori='h' bdisp='2' draggable='true' ondragstart='drag(event)' onclick='orientacion2(this);' src='imagenes/bbh.png'  width='150px' height='50px'> </div></td>";
+    /*
     barco = barco + "<td><div id='papelera'><img src='imagenes/papelera.png' width='100px' heigth='50px'></td>";
     barco = barco + '<td><div id="papelera" ondrop="return eliminar(event)" ondragleave="return leave(event)" ondragover="return over(event)" ondragenter="return enter(event)">Papelera</div>';
+    */
     barco = barco + "</tr>";
     barco = barco + "</table>";
     barco = barco + "</fieldset>";

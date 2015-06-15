@@ -55,8 +55,10 @@ function barcos() {
     barco = barco + "<td><div id='divBarco1'> <img id='barco1' long='1' ori='h' bdisp='4' draggable='true' ondragstart='drag(event)' src='imagenes/barco1.png' width='50px' height='50px'> </div></td>";
     barco = barco + "<td><div id='divBarco2'> <img id='barco2' long='2' ori='h' bdisp='3' draggable='true' ondragstart='drag(event)' onclick='orientacion(this);' src='imagenes/barcobarcoh.png'  width='100px' height='50px'> </div></td>";
     barco = barco + "<td><div id='divBarco3'> <img id='barco3' long='3' ori='h' bdisp='2' draggable='true' ondragstart='drag(event)' onclick='orientacion2(this);' src='imagenes/bbh.png'  width='150px' height='50px'> </div></td>";
+    /*
     barco = barco + "<td><div id='papelera'><img src='imagenes/papelera.png' width='100px' heigth='50px'></td>";
     barco = barco + '<td><div id="papelera" ondrop="return eliminar(event)" ondragleave="return leave(event)" ondragover="return over(event)" ondragenter="return enter(event)">Papelera</div>';
+    */
     barco = barco + "</tr>";
     barco = barco + "</table>";
     barco = barco + "</fieldset>";
@@ -126,7 +128,7 @@ function drag(ev) {
     ev.dataTransfer.setData("text", imagen);
     
 }
-
+var numBarcos=0;
 function drop(ev) {
     ev.preventDefault();
     var id = ev.dataTransfer.getData("text");
@@ -155,6 +157,7 @@ function drop(ev) {
             var bdisp = barco.getAttribute('bdisp');
             bdisp--; 
             barco.setAttribute('bdisp',bdisp);
+            numBarcos++;
         }
         else if(barco.getAttribute('long')==2){
             if(barco.getAttribute('ori')=="h"){
@@ -185,6 +188,7 @@ function drop(ev) {
             var bdisp = barco.getAttribute('bdisp');
             bdisp--; 
             barco.setAttribute('bdisp',bdisp);
+            numBarcos++;
         }
         else if(barco.getAttribute('long')==3){
             
@@ -226,6 +230,7 @@ function drop(ev) {
             var bdisp = barco.getAttribute('bdisp');
             bdisp--; 
             barco.setAttribute('bdisp',bdisp);
+            numBarcos++;
         }
       // hacer que los barcos desaparecan cuando se haya colocado un numero determinado de veces  
       if(barco.getAttribute('bdisp')==0 && barco.getAttribute('long')==1){
@@ -293,10 +298,10 @@ function refrescar2() {
         , 10000);
 }
 
-var intervalo = 0;
+var intervalo;
 function refrescar3() {
         cumpruebaestado3();
-        intervalo = window.setInterval(
+        intervalo = setInterval(
                 function () {
                     
                     cumpruebaestado3();
@@ -304,6 +309,8 @@ function refrescar3() {
         , 10000);
 }
 var intervaloEstado;
+
+
 function refrescar4() {
         //consultaturno();
         intervaloEstado = window.setInterval(
@@ -496,7 +503,7 @@ function respuestapeticion(xmlHttp){
 function jugar(){
     var empezar = document.getElementById("listo").checked;
     //alert(empezar);
-    if(empezar == true){
+    if(empezar == true && numBarcos>0){
         cambioaestado3();
         generatablero();
         //alert(JSON.stringify(mitablero));
@@ -584,7 +591,11 @@ function cumpruebaestado3(){
     };
     xmlHttp.send();
 }
-
+/**
+ * 
+ * @param {type} xmlHttp
+ * @returns {undefined}
+ */
 function respestado3(xmlHttp){
     if (xmlHttp.status == 200) {
         var resp = xmlHttp.responseText;
@@ -594,7 +605,7 @@ function respestado3(xmlHttp){
         var u2 = respJSON.usu2;
         
         if(u1 == 1 && u2 == 1){
-            window.clearInterval(intervalo);
+            clearInterval(intervalo);
             //alert("intervalo paradao!!!");
             juego();
             //enpartida = true;
@@ -604,7 +615,7 @@ function respestado3(xmlHttp){
 
 function juego(){
     ///
-    
+    $("#tablero2>.divTablero").unbind();
     $("#tablero2>.divTablero").click(function(evt){
          $("#tablero2>.divTablero").unbind();
         var id= evt.target.id;
@@ -634,15 +645,17 @@ function respuestaclick(xmlHttp){
         var fila = respJSON.fila;
         var columna = respJSON.columna;
         var id = "y"+fila+"y"+columna; 
-        
+        console.log(tiro);
         var e = document.getElementById(id);
-        if(tiro === "0"){
-            e.className = "divTableroAgua";           
+        if(tiro == "0"){
+            e.className = "divTableroAgua";
+            
         }
-        if(tiro === "1"){
+        else if(tiro == "1"){
             e.className = "divTableroTocado";
+             consultawin();
         }
-        consultawin();
+       
     }
 }
 
@@ -665,12 +678,24 @@ function respwin(xmlHttp){
         var respJSON = JSON.parse(resp);
         
         var win = respJSON.win;
+        var ganador = respJSON.ganador;
         
-        if(win == true){
-            alert("Fin del juago, ¡¡¡HAS GANADO!!!");
+        if(win == "true"){
+            alert("Fin del juago, HAS GANADO!!!"+ganador);
+            console.log(ganador);
+            clearInterval(intervaloEstado);
+            /*
+            setTimeout(
+                function(){ */
+                    finpartida();
+              /*  },3000
+            );*/
+            
         }
         else{
-            //alert("sigue jugando");
+            //consultaturno();
+            juego();
+            console.log("sigue jugando");
         }
     }
 }
@@ -695,16 +720,46 @@ function respturno(xmlHttp){
         var respJSON = JSON.parse(resp);
         
         var turno = respJSON.turno;
-        
-        if(turno==1){
+        var ganador = respJSON.ganador;
+        // window.location="paginausuario.php";
+        if(ganador=="loser"){
+            alert("has perdido");
+            window.location="paginausuario.php";
+        }
+        if(turno==1 ){
+           
             console.log("me toca");
-            alert("me toca");
+            //alert("me toca");
             juego();
+            document.getElementById('turnos').innerHTML = "<span style= 'color: green; font-size: 45px; font-weight: bold'>Me toca</span>";
         }
         if(turno==0){
+            
             console.log("No me toca");
+            document.getElementById('turnos').innerHTML = "<span style= 'color: red; font-size: 45px; font-weight: bold'>No me toca</span>";
         }
+    }
+}
+
+function finpartida(){
+    var urlDestino = "finpartida.php";
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("POST", urlDestino, true);
+    xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xmlHttp.onreadystatechange = function () {
+        if (xmlHttp.readyState == 4) {
+            respfinpartida(xmlHttp);
+        }
+    };
+    xmlHttp.send();
+}
+
+function respfinpartida(xmlHttp){
+    if (xmlHttp.status == 200) {
+        var resp = xmlHttp.responseText;
+        var respJSON = JSON.parse(resp);
         
-        
+        //var turno = respJSON.turno;
+        window.location="paginausuario.php";
     }
 }

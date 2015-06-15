@@ -13,7 +13,7 @@ $conexion=mysql_connect("mysql.hostinger.es","u883679537_usu","95826440") or die
     $password="";
     $database="barcos";*/
     $host="mysql.hostinger.es";
-    $usuario="u883679537_usu";
+    $user="u883679537_usu";
     $password="95826440";
     $database="u883679537_1";
 

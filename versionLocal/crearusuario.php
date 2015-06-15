@@ -49,9 +49,9 @@ $database="u883679537_1"; */
     }
     
     if($pass1 == $pass2 && /*$check == true &&*/ $boolean==false){
-        $query="insert into usuarios (nick,password,id,p_ganadas,p_perdidas,estado,peticion) values ('".$nick."','".$pass1."','".$null."','".$a."','".$a."','".$a."','".$a."')";
+        $query="insert into usuarios (nick,password,id,p_ganadas,p_perdidas,estado,peticion,tablero,id_partida) values ('".$nick."','".$pass1."','".$null."','".$a."','".$a."','".$a."','".$a."','','".$a."')";
         //echo $query;
-        mysql_query($query, $conexion);
+        mysqli_query($conexion,$query);
         
     }
    

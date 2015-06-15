@@ -37,10 +37,10 @@ $database="u883679537_1"; */
     $database="u883679537_1";
 
 
-    $conexion = mysqli_connect($host, $user, $password, $database);
-    
-    $consulta = mysqli_query($conexion,"select * from usuarios");
+   $conexion = mysqli_connect($host, $user, $password, $database);
 
+    $consulta = mysqli_query($conexion,"select * from usuarios");
+    
     while($registro=mysqli_fetch_array($consulta)){
         if($registro['nick'] == $usuario){
             $boolean = true;
@@ -48,9 +48,9 @@ $database="u883679537_1"; */
     }
     
     if($pass1 == $pass2 && /*$check == true &&*/ $boolean==false){
-        $query="insert into usuarios (nick,password,id,p_ganadas,p_perdidas,estado,peticion) values ('".$nick."','".$pass1."','".$null."','".$a."','".$a."','".$a."','".$a."')";
+        $query="insert into usuarios (nick,password,id,p_ganadas,p_perdidas,estado,peticion,tablero,id_partida) values ('".$nick."','".$pass1."','".$null."','".$a."','".$a."','".$a."','".$a."','','".$a."')";
         //echo $query;
-        mysql_query($query, $conexion);
+        mysqli_query($conexion,$query);
         
     }
    

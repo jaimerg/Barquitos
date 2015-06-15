@@ -61,6 +61,7 @@ while ($registro = mysqli_fetch_array($consulta2)) {
 $respuesta = '{"tiro":"'.$tiro.'","fila":"'.$fila.'","columna":"'.$columna.'"}';
 echo $respuesta;
 
+
 //$consulta = mysqli_query($conexion,"select * from usuarios");
 /*$consulta = mysqli_query($conexion,"select tablero from usuarios where id=' '");
  

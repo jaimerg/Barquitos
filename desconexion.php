@@ -11,11 +11,11 @@ $user="root";
 $password="";
 $database="barcos";*/
 $host="mysql.hostinger.es";
-$usuario="u883679537_usu";
+$user="u883679537_usu";
 $password="95826440";
 $database="u883679537_1";
 
-$conexion = mysqli_connect($host, $usuario, $password, $database);
+$conexion = mysqli_connect($host, $user, $password, $database);
 
 $user = $_SESSION['user'];
 $pass = $_SESSION['pass'];
